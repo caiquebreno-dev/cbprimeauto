@@ -175,9 +175,13 @@ function finalizarPedido() {
 
   msg += `🛠️ *Serviços:*%0A`;
 
+  let totalPedido = 0;
   carrinho.forEach(item => {
-    msg += `- ${item.nome} (R$ ${item.preco})%0A`;
+    msg += `- ${item.nome} (R$ ${item.preco.toFixed(2).replace(".", ",")})%0A`;
+    totalPedido += item.preco;
   });
+
+  msg += `%0A💰 *Total: R$ ${totalPedido.toFixed(2).replace(".", ",")}*%0A`;
 
   msg += `%0A📝 Obs: ${obs}`;
 
