@@ -18,7 +18,7 @@ const servicos = {
       nome: "Descontaminação Ferrosa",
       descCurta: "Remoção de partículas ferrosas.",
       desc: "A Descontaminação Ferrosa é feita com o Izer da Vonixx. Esse processo remove partículas de ferro incrustadas na pintura e rodas, restaurando a textura lisa e o brilho original.",
-      preco: 5,
+      preco: 7,
       icon: '<i class="fa-solid fa-wand-magic-sparkles"></i>'
     },
     {
@@ -26,7 +26,7 @@ const servicos = {
       nome: "Detalhamento na Interna",
       descCurta: "Limpeza profunda do interior.",
       desc: "Cuidado minucioso em todas as superfícies internas do veículo, incluindo painel, plásticos, bancos e carpetes, garantindo higiene e renovação.",
-      preco: 10,
+      preco: 15,
       icon: '<i class="fa-solid fa-spray-can"></i>'
     }
   ],
@@ -41,7 +41,7 @@ const servicos = {
     },
     {
       id: 5,
-      nome: "Descontaminação com Izer",
+      nome: "Descontaminação Ferrosa",
       descCurta: "Remoção de impurezas metálicas.",
       desc: "A descontaminação é feita com o Izer da Vonixx, ideal para remover fuligem de freio e outras contaminações ferrosas das rodas e peças metálicas da moto.",
       preco: 5,
