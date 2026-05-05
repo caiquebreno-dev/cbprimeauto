@@ -3,11 +3,11 @@ import re
 with open('style.css', 'r', encoding='utf-8') as f:
     content = f.read()
 
-# Replace fonts
+# Substituir fontes
 content = re.sub(r"--font-display:\s*'Cinzel',\s*serif;", "--font-display: 'Titillium Web', sans-serif;", content)
 content = re.sub(r"--font-body:\s*'Montserrat',\s*sans-serif;", "--font-body: 'Titillium Web', sans-serif;", content)
 
-# To avoid replacing already replaced things, we will use a function
+# Para evitar substituir itens já substituídos, usaremos uma função.
 def replace_weight(m):
     weight = int(m.group(1))
     if weight >= 700:
