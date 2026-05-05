@@ -164,7 +164,7 @@ function finalizarPedido() {
   const obs = document.getElementById("clienteObs").value;
 
   if (!nome || !tel || !data || !hora || carrinho.length === 0) {
-    mostrarToast("Preencha tudo!", "warning");
+    mostrarToast("Preencha tudo! Ou selecione um serviço!", "warning");
     return;
   }
 
