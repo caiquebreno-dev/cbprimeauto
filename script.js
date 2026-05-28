@@ -37,7 +37,7 @@ const servicos = {
       nome: "Lavagem Completa",
       descCurta: "Para trail e adventure bikes.",
       desc: "Lavagem completa para motos trail e adventure. Remoção eficiente de lama, poeira e sujeira de uso misto, protegendo todos os componentes.",
-      preco: 35,
+      preco: 30,
       icon: '<i class="fa-solid fa-droplet"></i>',
       exemplos: "Ex: Lander, Tenere, XRE 300, Crosser"
     },
@@ -49,7 +49,7 @@ const servicos = {
       nome: "Lavagem Completa",
       descCurta: "Para scooters e maxi-scooters.",
       desc: "Lavagem completa da scooter com atenção especial às carenagens, rodas e compartimento interno de bagagem.",
-      preco: 25,
+      preco: 30,
       icon: '<i class="fa-solid fa-droplet"></i>',
       exemplos: "Ex: PCX, NMax, Lead, Burgman 125"
     }
