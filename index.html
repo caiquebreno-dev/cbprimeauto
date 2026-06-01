@@ -1,448 +1,401 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CB Prime Auto — Estética Automotiva</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CB Prime Auto — Estética Automotiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-    <!-- ============ PARTÍCULAS DE FUNDO ============ -->
-    <canvas id="particles-canvas"></canvas>
+  <canvas id="particles-canvas"></canvas>
 
-    <!-- ============ HEADER / NAV ============ -->
-    <header id="header">
-        <nav class="nav-container">
+  <!-- ============ HEADER ============ -->
+  <header id="header">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="Imagens/ChatGPT Image 30 de abr. de 2026, 12_21_22.png"
+             alt="Logo CB Prime Auto"
+             style="height:90px; object-fit:contain; mix-blend-mode:screen;" />
+      </a>
 
-            <a href="#hero" class="nav-logo">
-                <img src="Imagens/ChatGPT Image 30 de abr. de 2026, 12_21_22.png" alt="Logo CB Prime Auto"
-                    style="height:90px; object-fit:contain; mix-blend-mode:screen;" />
-            </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#agendamento">Agendamento</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="#localizacao">Localização</a></li>
+      </ul>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#hero">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#agendamento">Agendamento</a></li>
-                <li><a href="#contato">Contato</a></li>
-                <li><a href="#localizacao">Localização</a></li>
-            </ul>
+      <div class="nav-actions">
+        <button class="cart-nav-btn" id="cartNavBtn" onclick="scrollToSection('agendamento')">
+          <span class="cart-nav-icon"><i class="fa-solid fa-cart-shopping"></i></span>
+          <span class="cart-nav-label">Carrinho</span>
+          <span class="cart-nav-badge" id="cartBadge">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
 
-            <div class="nav-actions">
-                <button class="cart-nav-btn" id="cartNavBtn" onclick="scrollToSection('agendamento')">
-                    <span class="cart-nav-icon"><i class="fa-solid fa-cart-shopping"></i></span>
-                    <span class="cart-nav-label">Carrinho</span>
-                    <span class="cart-nav-badge" id="cartBadge">0</span>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-
-        </nav>
-
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#hero" onclick="closeMobileMenu()">Início</a>
-            <a href="#sobre" onclick="closeMobileMenu()">Sobre Nós</a>
-            <a href="#servicos" onclick="closeMobileMenu()">Serviços</a>
-            <a href="#agendamento" onclick="closeMobileMenu()">Agendamento</a>
-            <a href="#contato" onclick="closeMobileMenu()">Contato</a>
-            <a href="#localizacao" onclick="closeMobileMenu()">Localização</a>
-        </div>
-    </header>
-
-    <!-- ============ HERO ============ -->
-    <section id="hero">
-        <div class="hero-glow"></div>
-        <div class="hero-content">
-            <h1 class="hero-title reveal">
-                SEU VEÍCULO<br>EM NÍVEL PREMIUM
-            </h1>
-            <p class="hero-subtitle reveal">Detalhes que fazem a diferença.</p>
-            <div class="hero-cta reveal">
-                <button class="btn-primary" onclick="scrollToSection('agendamento')">
-                    Agendar Agora
-                </button>
-                <button class="btn-secondary" onclick="scrollToSection('servicos')">
-                    Ver Serviços <i class="fa-solid fa-arrow-right" style="font-size:14px; margin-left:6px;"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ SOBRE NÓS ============ -->
-    <section id="sobre" class="section-sobre">
-        <div class="container">
-
-            <div class="section-header reveal">
-                <span class="section-tag">Quem Somos</span>
-                <h2 class="section-title">Sobre a <span>CB Prime Auto</span></h2>
-                <div class="gold-divider"></div>
-            </div>
-
-            <div class="sobre-grid">
-
-                <div class="sobre-text reveal">
-                    <p class="sobre-lead">
-                        Somos uma empresa <strong>jovem e apaixonada</strong> por motocicletas, focada em oferecer
-                        estética automotiva de alta qualidade.
-                    </p>
-                    <p>
-                        A CB Prime Auto surge como uma empresa <em>iniciante, mas com uma missão clara</em>: tratar
-                        cada moto com o máximo de cuidado, atenção e profissionalismo. Acreditamos que uma moto bem
-                        cuidada reflete a personalidade do seu dono — e é exatamente isso que fazemos.
-                    </p>
-                    <p>
-                        Utilizamos produtos de qualidade e técnicas especializadas, sempre com foco em superar as
-                        expectativas dos nossos clientes. Ainda estamos construindo nossa história, mas cada moto
-                        que passa pelas nossas mãos é tratada como se fosse única.
-                    </p>
-                    <div class="sobre-destaque">
-                        <span class="destaque-icon"><i class="fa-solid fa-star"></i></span>
-                        <span>"Cada detalhe faz a diferença. E aqui, nenhum detalhe é ignorado."</span>
-                    </div>
-                </div>
-
-                <div class="sobre-valores reveal">
-                    <div class="valor-card">
-                        <span class="valor-icon"><i class="fa-solid fa-trophy"></i></span>
-                        <div>
-                            <h4>Qualidade</h4>
-                            <p>Produtos e técnicas que entregam resultados visíveis e duradouros.</p>
-                        </div>
-                    </div>
-                    <div class="valor-card">
-                        <span class="valor-icon"><i class="fa-solid fa-handshake"></i></span>
-                        <div>
-                            <h4>Confiança</h4>
-                            <p>Transparência e honestidade em cada etapa do nosso trabalho.</p>
-                        </div>
-                    </div>
-                    <div class="valor-card">
-                        <span class="valor-icon"><i class="fa-solid fa-gem"></i></span>
-                        <div>
-                            <h4>Dedicação</h4>
-                            <p>Cada moto recebe atenção total, como se fosse a nossa própria.</p>
-                        </div>
-                    </div>
-                    <div class="valor-card">
-                        <span class="valor-icon"><i class="fa-solid fa-rocket"></i></span>
-                        <div>
-                            <h4>Crescimento</h4>
-                            <p>Somos iniciantes, mas aprendemos a cada dia para servir melhor.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ SERVIÇOS ============ -->
-    <section id="servicos" class="section-servicos">
-        <div class="container">
-
-            <div class="section-header reveal">
-                <span class="section-tag">O Que Oferecemos</span>
-                <h2 class="section-title">Nossos <span>Serviços</span></h2>
-                <div class="gold-divider"></div>
-                <p class="section-desc">Escolha a categoria da sua moto e adicione o serviço ao carrinho</p>
-            </div>
-
-            <!-- TABS geradas pelo script.js -->
-            <div class="tabs-wrapper reveal" id="tabs-motos"></div>
-
-            <!-- GRID preenchido pelo script.js -->
-            <div class="tab-panel active" id="tab-motos">
-                <div class="services-grid" id="grid-motos"></div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ============ AGENDAMENTO / CARRINHO ============ -->
-    <section id="agendamento" class="section-agendamento">
-        <div class="container">
-
-            <div class="section-header reveal">
-                <span class="section-tag">Agendar</span>
-                <h2 class="section-title">Carrinho & <span>Agendamento</span></h2>
-                <div class="gold-divider"></div>
-            </div>
-
-            <div class="agendamento-grid">
-
-                <!-- CARRINHO -->
-                <div class="cart-panel glass-panel reveal">
-                    <h3 class="panel-title">
-                        <span><i class="fa-solid fa-cart-shopping"></i></span> Serviços Selecionados
-                    </h3>
-
-                    <div class="cart-empty" id="cartEmpty">
-                        <div class="cart-empty-img"><i class="fa-solid fa-motorcycle"></i></div>
-                        <p>Seu carrinho está vazio.<br>Escolha os serviços acima!</p>
-                    </div>
-
-                    <ul class="cart-list" id="cartList"></ul>
-
-                    <div class="cart-footer" id="cartFooter" style="display:none;">
-                        <div class="cart-total-row">
-                            <span class="cart-total-label">Total</span>
-                            <span class="cart-total-value" id="cartTotal">R$ 0,00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FORMULÁRIO -->
-                <div class="form-panel glass-panel reveal">
-                    <h3 class="panel-title">
-                        <span><i class="fa-regular fa-calendar-days"></i></span> Dados do Agendamento
-                    </h3>
-
-                    <div class="form-group">
-                        <label for="clienteNome">Nome Completo *</label>
-                        <input type="text" id="clienteNome" placeholder="Digite seu nome completo" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="clienteTel">WhatsApp *</label>
-                        <input type="tel" id="clienteTel" placeholder="(00) 00000-0000" />
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="clienteData">Dia *</label>
-                            <select id="clienteData" onchange="atualizarHorarios()">
-                                <option value="">Selecione...</option>
-                                <option value="Sexta à Noite">Sexta à Noite</option>
-                                <option value="Sábado">Sábado</option>
-                                <option value="Domingo">Domingo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="clienteHora">Horário *</label>
-                            <select id="clienteHora">
-                                <option value="">Selecione o dia primeiro</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="clienteVeiculo">Moto</label>
-                        <input type="text" id="clienteVeiculo" placeholder="Ex: Yamaha FZ-25 Vermelha 2023" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="clienteObs">Observações</label>
-                        <textarea id="clienteObs" rows="3"
-                            placeholder="Ex: Moto muito suja, atenção especial na roda traseira..."></textarea>
-                    </div>
-
-                    <button class="btn-whatsapp" onclick="finalizarPedido()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                            <path
-                                d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z" />
-                        </svg>
-                        Enviar Pedido pelo WhatsApp
-                    </button>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ LOCALIZAÇÃO ============ -->
-    <section id="localizacao" class="section-localizacao">
-        <div class="container">
-            <div class="localizacao-grid">
-
-                <div class="loc-text reveal">
-                    <span class="section-tag">Localização</span>
-                    <h2 class="section-title">Visite nosso <span>Espaço</span></h2>
-                    <p class="loc-desc">
-                        Venha conhecer pessoalmente nosso espaço. Estamos preparados para te atender com o mais
-                        alto padrão em Limoeiro do Norte.
-                    </p>
-
-                    <div class="loc-info">
-                        <div class="loc-item">
-                            <span class="loc-icon"><i class="fa-solid fa-location-dot"></i></span>
-                            <div>
-                                <h4>Endereço</h4>
-                                <p>R. Raimundo Craveiro, 3532 — Luís Alves de Freitas<br>Limoeiro do Norte — CE</p>
-                            </div>
-                        </div>
-                        <div class="loc-item">
-                            <span class="loc-icon"><i class="fa-brands fa-whatsapp"></i></span>
-                            <div>
-                                <h4>Telefone</h4>
-                                <p><a href="https://wa.me/5585998587467" target="_blank">(85) 99858-7467</a></p>
-                            </div>
-                        </div>
-                        <div class="loc-item">
-                            <span class="loc-icon"><i class="fa-brands fa-instagram"></i></span>
-                            <div>
-                                <h4>Instagram</h4>
-                                <p><a href="https://www.instagram.com/cbprimeauto" target="_blank">@cbprimeauto</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE"
-                        target="_blank" class="btn-primary" style="margin-top:24px; text-decoration:none;">
-                        Abrir no Google Maps <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i>
-                    </a>
-                </div>
-
-                <div class="loc-map reveal">
-                    <iframe
-                        src="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        width="100%" height="450" style="border:0; border-radius:var(--radius);" allowfullscreen=""
-                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ CONTATO ============ -->
-    <section id="contato" class="section-contato">
-        <div class="container">
-
-            <div class="section-header reveal">
-                <span class="section-tag">Fale Conosco</span>
-                <h2 class="section-title">Entre em <span>Contato</span></h2>
-                <div class="gold-divider"></div>
-            </div>
-
-            <div class="contato-grid">
-                <div class="contato-card reveal">
-                    <span class="contato-icon"><i class="fa-solid fa-location-dot"></i></span>
-                    <h4>Localização</h4>
-                    <p>
-                        <a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE"
-                            target="_blank">
-                            Limoeiro do Norte, CE<br>Brasil
-                        </a>
-                    </p>
-                </div>
-                <div class="contato-card reveal">
-                    <span class="contato-icon"><i class="fa-brands fa-whatsapp"></i></span>
-                    <h4>WhatsApp</h4>
-                    <p><a href="https://wa.me/5585998587467" target="_blank">(85) 99858-7467</a></p>
-                </div>
-                <div class="contato-card reveal">
-                    <span class="contato-icon"><i class="fa-regular fa-clock"></i></span>
-                    <h4>Horário</h4>
-                    <p>Sexta à noite: 17:30h às 21h</p>
-                    <p>Sáb e Dom: 07h às 19h</p>
-                </div>
-                <div class="contato-card reveal">
-                    <span class="contato-icon"><i class="fa-brands fa-instagram"></i></span>
-                    <h4>Instagram</h4>
-                    <p><a href="https://www.instagram.com/cbprimeauto" target="_blank">@cbprimeauto</a></p>
-                </div>
-                <div class="contato-card reveal">
-                    <span class="contato-icon"><i class="fa-brands fa-tiktok"></i></span>
-                    <h4>TikTok</h4>
-                    <p><a href="https://www.tiktok.com/@cb.prime.auto" target="_blank">@cb.prime.auto</a></p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="footer">
-        <div class="footer-inner">
-
-            <div class="footer-logo">
-                <img src="Imagens/ChatGPT Image 30 de abr. de 2026, 11_36_26.png" alt="Logo CB Prime Auto"
-                    style="height:120px; object-fit:contain; mix-blend-mode:screen;" />
-            </div>
-
-            <div class="footer-links">
-                <a href="#sobre">Sobre</a>
-                <a href="#servicos">Serviços</a>
-                <a href="#agendamento">Agendar</a>
-                <a href="#contato">Contato</a>
-            </div>
-
-            <div class="footer-social">
-                <a href="https://wa.me/5585998587467" target="_blank" class="social-btn wa">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                        <path
-                            d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z" />
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/cbprimeauto" target="_blank" class="social-btn ig">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.tiktok.com/@cb.prime.auto" target="_blank" class="social-btn tk">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-            </div>
-
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 CB Prime Auto Estética Automotiva — Todos os direitos reservados — Caíque Breno</p>
-        </div>
-    </footer>
-
-    <!-- ============ WHATSAPP FLUTUANTE ============ -->
-    <a href="https://wa.me/5585998587467" target="_blank" class="float-whatsapp" aria-label="WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white">
-            <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-            <path
-                d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z" />
-        </svg>
-    </a>
-
-    <!-- ============ MODAL DE SERVIÇO ============ -->
-    <div class="modal-overlay" id="serviceModal">
-        <div class="modal-content glass-panel">
-            <button class="modal-close" onclick="fecharModal()">✕</button>
-            <div class="modal-header">
-                <div class="modal-icon" id="modalIcon"></div>
-                <h3 class="modal-title" id="modalTitle"></h3>
-            </div>
-            <div class="modal-body">
-                <p id="modalDesc"></p>
-                <div class="modal-price" id="modalPrice"></div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-primary" id="modalAddBtn" style="width:100%; justify-content:center;">
-                    Adicionar ao Carrinho
-                </button>
-            </div>
-        </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#hero"        onclick="closeMobileMenu()">Início</a>
+      <a href="#sobre"       onclick="closeMobileMenu()">Sobre Nós</a>
+      <a href="#servicos"    onclick="closeMobileMenu()">Serviços</a>
+      <a href="#agendamento" onclick="closeMobileMenu()">Agendamento</a>
+      <a href="#contato"     onclick="closeMobileMenu()">Contato</a>
+      <a href="#localizacao" onclick="closeMobileMenu()">Localização</a>
     </div>
+  </header>
 
-    <!-- ============ TOAST ============ -->
-    <div class="toast" id="toast">
-        <span id="toastIcon"><i class="fa-solid fa-circle-check"></i></span>
-        <span id="toastMsg">Serviço adicionado!</span>
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <h1 class="hero-title reveal">SEU VEÍCULO<br>EM NÍVEL PREMIUM</h1>
+      <p class="hero-subtitle reveal">Detalhes que fazem a diferença.</p>
+      <div class="hero-cta reveal">
+        <button class="btn-primary" onclick="scrollToSection('agendamento')">Agendar Agora</button>
+        <button class="btn-secondary" onclick="scrollToSection('servicos')">
+          Ver Serviços <i class="fa-solid fa-arrow-right" style="font-size:14px; margin-left:6px;"></i>
+        </button>
+      </div>
     </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre" class="section-sobre">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Quem Somos</span>
+        <h2 class="section-title">Sobre a <span>CB Prime Auto</span></h2>
+        <div class="gold-divider"></div>
+      </div>
+      <div class="sobre-grid">
+        <div class="sobre-text reveal">
+          <p class="sobre-lead">
+            Somos uma empresa <strong>jovem e apaixonada</strong> por motocicletas, focada em oferecer
+            estética automotiva de alta qualidade.
+          </p>
+          <p>
+            A CB Prime Auto surge como uma empresa <em>iniciante, mas com uma missão clara</em>: tratar
+            cada moto com o máximo de cuidado, atenção e profissionalismo. Acreditamos que uma moto bem
+            cuidada reflete a personalidade do seu dono — e é exatamente isso que fazemos.
+          </p>
+          <p>
+            Utilizamos produtos de qualidade e técnicas especializadas, sempre com foco em superar as
+            expectativas dos nossos clientes. Ainda estamos construindo nossa história, mas cada moto
+            que passa pelas nossas mãos é tratada como se fosse única.
+          </p>
+          <div class="sobre-destaque">
+            <span class="destaque-icon"><i class="fa-solid fa-star"></i></span>
+            <span>"Cada detalhe faz a diferença. E aqui, nenhum detalhe é ignorado."</span>
+          </div>
+        </div>
+        <div class="sobre-valores reveal">
+          <div class="valor-card">
+            <span class="valor-icon"><i class="fa-solid fa-trophy"></i></span>
+            <div><h4>Qualidade</h4><p>Produtos e técnicas que entregam resultados visíveis e duradouros.</p></div>
+          </div>
+          <div class="valor-card">
+            <span class="valor-icon"><i class="fa-solid fa-handshake"></i></span>
+            <div><h4>Confiança</h4><p>Transparência e honestidade em cada etapa do nosso trabalho.</p></div>
+          </div>
+          <div class="valor-card">
+            <span class="valor-icon"><i class="fa-solid fa-gem"></i></span>
+            <div><h4>Dedicação</h4><p>Cada moto recebe atenção total, como se fosse a nossa própria.</p></div>
+          </div>
+          <div class="valor-card">
+            <span class="valor-icon"><i class="fa-solid fa-rocket"></i></span>
+            <div><h4>Crescimento</h4><p>Somos iniciantes, mas aprendemos a cada dia para servir melhor.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVIÇOS ============ -->
+  <section id="servicos" class="section-servicos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">O Que Oferecemos</span>
+        <h2 class="section-title">Nossos <span>Serviços</span></h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">Escolha a categoria da sua moto e adicione o serviço ao carrinho</p>
+      </div>
+      <div class="tabs-wrapper reveal" id="tabs-motos"></div>
+      <div class="tab-panel active" id="tab-motos">
+        <div class="services-grid" id="grid-motos"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AGENDAMENTO ============ -->
+  <section id="agendamento" class="section-agendamento">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Agendar</span>
+        <h2 class="section-title">Carrinho & <span>Agendamento</span></h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="agendamento-grid">
+
+        <!-- CARRINHO -->
+        <div class="cart-panel glass-panel reveal">
+          <h3 class="panel-title">
+            <span><i class="fa-solid fa-cart-shopping"></i></span> Serviços Selecionados
+          </h3>
+          <div class="cart-empty" id="cartEmpty">
+            <div class="cart-empty-img"><i class="fa-solid fa-motorcycle"></i></div>
+            <p>Seu carrinho está vazio.<br>Escolha os serviços acima!</p>
+          </div>
+          <ul class="cart-list" id="cartList"></ul>
+          <div class="cart-footer" id="cartFooter" style="display:none;">
+            <div class="cart-total-row">
+              <span class="cart-total-label">Total</span>
+              <span class="cart-total-value" id="cartTotal">R$ 0,00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORMULÁRIO -->
+        <div class="form-panel glass-panel reveal">
+          <h3 class="panel-title">
+            <span><i class="fa-regular fa-calendar-days"></i></span> Dados do Agendamento
+          </h3>
+
+          <div class="form-group">
+            <label for="clienteNome">Nome Completo *</label>
+            <input type="text" id="clienteNome" placeholder="Digite seu nome completo" />
+          </div>
+
+          <div class="form-group">
+            <label for="clienteTel">WhatsApp *</label>
+            <input type="tel" id="clienteTel" placeholder="(00) 00000-0000" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clienteData">Dia *</label>
+              <!-- Os values DEVEM ser idênticos às chaves de horariosPorDia no script.js -->
+              <select id="clienteData" onchange="atualizarHorarios()">
+                <option value="">Selecione...</option>
+                <option value="Segunda a Sexta">Segunda a Sexta</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="clienteHora">Horário *</label>
+              <!-- Preenchido dinamicamente por atualizarHorarios() no script.js -->
+              <select id="clienteHora">
+                <option value="">Selecione o dia primeiro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="clienteVeiculo">Moto</label>
+            <input type="text" id="clienteVeiculo" placeholder="Ex: Yamaha FZ-25 Vermelha 2023" />
+          </div>
+
+          <div class="form-group">
+            <label for="clienteObs">Observações</label>
+            <textarea id="clienteObs" rows="3"
+              placeholder="Ex: Moto muito suja, atenção especial na roda traseira..."></textarea>
+          </div>
+
+          <button class="btn-whatsapp" onclick="finalizarPedido()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
+            </svg>
+            Enviar Pedido pelo WhatsApp
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCALIZAÇÃO ============ -->
+  <section id="localizacao" class="section-localizacao">
+    <div class="container">
+      <div class="localizacao-grid">
+
+        <div class="loc-text reveal">
+          <span class="section-tag">Localização</span>
+          <h2 class="section-title">Visite nosso <span>Espaço</span></h2>
+          <p class="loc-desc">
+            Venha conhecer pessoalmente nosso espaço. Estamos preparados para te atender com o mais
+            alto padrão em Limoeiro do Norte.
+          </p>
+          <div class="loc-info">
+            <div class="loc-item">
+              <span class="loc-icon"><i class="fa-solid fa-location-dot"></i></span>
+              <div>
+                <h4>Endereço</h4>
+                <p>R. Raimundo Craveiro, 3532 — Luís Alves de Freitas<br>Limoeiro do Norte — CE</p>
+              </div>
+            </div>
+            <div class="loc-item">
+              <span class="loc-icon"><i class="fa-brands fa-whatsapp"></i></span>
+              <div>
+                <h4>Telefone</h4>
+                <p><a href="https://wa.me/5585998587467" target="_blank">(85) 99858-7467</a></p>
+              </div>
+            </div>
+            <div class="loc-item">
+              <span class="loc-icon"><i class="fa-brands fa-instagram"></i></span>
+              <div>
+                <h4>Instagram</h4>
+                <p><a href="https://www.instagram.com/cbprimeauto" target="_blank">@cbprimeauto</a></p>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE"
+             target="_blank" class="btn-primary" style="margin-top:24px; text-decoration:none;">
+            Abrir no Google Maps <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i>
+          </a>
+        </div>
+
+        <div class="loc-map reveal">
+          <iframe
+            src="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="450"
+            style="border:0; border-radius:var(--radius);"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="section-contato">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Fale Conosco</span>
+        <h2 class="section-title">Entre em <span>Contato</span></h2>
+        <div class="gold-divider"></div>
+      </div>
+      <div class="contato-grid">
+
+        <div class="contato-card reveal">
+          <span class="contato-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <h4>Localização</h4>
+          <p>
+            <a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE"
+               target="_blank">Limoeiro do Norte, CE<br>Brasil</a>
+          </p>
+        </div>
+
+        <div class="contato-card reveal">
+          <span class="contato-icon"><i class="fa-brands fa-whatsapp"></i></span>
+          <h4>WhatsApp</h4>
+          <p><a href="https://wa.me/5585998587467" target="_blank">(85) 99858-7467</a></p>
+        </div>
+
+        <!-- Horário exatamente igual ao da imagem enviada -->
+        <div class="contato-card reveal">
+          <span class="contato-icon"><i class="fa-regular fa-clock"></i></span>
+          <h4>Horário</h4>
+          <p>Seg – Sex: 18h às 20h<br>Sáb e Dom: 07h às 19h</p>
+        </div>
+
+        <div class="contato-card reveal">
+          <span class="contato-icon"><i class="fa-brands fa-instagram"></i></span>
+          <h4>Instagram</h4>
+          <p><a href="https://www.instagram.com/cbprimeauto" target="_blank">@cbprimeauto</a></p>
+        </div>
+
+        <div class="contato-card reveal">
+          <span class="contato-icon"><i class="fa-brands fa-tiktok"></i></span>
+          <h4>TikTok</h4>
+          <p><a href="https://www.tiktok.com/@cb.prime.auto" target="_blank">@cb.prime.auto</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Imagens/ChatGPT Image 30 de abr. de 2026, 11_36_26.png"
+             alt="Logo CB Prime Auto"
+             style="height:120px; object-fit:contain; mix-blend-mode:screen;" />
+      </div>
+      <div class="footer-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#agendamento">Agendar</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://wa.me/5585998587467" target="_blank" class="social-btn wa">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/cbprimeauto" target="_blank" class="social-btn ig">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@cb.prime.auto" target="_blank" class="social-btn tk">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CB Prime Auto Estética Automotiva — Todos os direitos reservados — Caíque Breno</p>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLUTUANTE ============ -->
+  <a href="https://wa.me/5585998587467" target="_blank" class="float-whatsapp" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
+    </svg>
+  </a>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal-overlay" id="serviceModal">
+    <div class="modal-content glass-panel">
+      <button class="modal-close" onclick="fecharModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-icon" id="modalIcon"></div>
+        <h3 class="modal-title" id="modalTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <p id="modalDesc"></p>
+        <div class="modal-price" id="modalPrice"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" id="modalAddBtn" style="width:100%; justify-content:center;">
+          Adicionar ao Carrinho
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TOAST ============ -->
+  <div class="toast" id="toast">
+    <span id="toastIcon"><i class="fa-solid fa-circle-check"></i></span>
+    <span id="toastMsg">Serviço adicionado!</span>
+  </div>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
