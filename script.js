@@ -57,10 +57,16 @@ const servicos = {
 };
 
 // ---------- HORÁRIOS POR DIA ----------
+// As chaves DEVEM ser idênticas aos values do select #clienteData no HTML
 const horariosPorDia = {
+  // Segunda a Sexta: 18:00 às 20:00 (de 2h em 2h → 2 horários)
   "Segunda a Sexta": ["18:00", "20:00"],
-  "Sábado":          ["07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
-  "Domingo":         ["07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00"]
+
+  // Sábado: 07:00 às 19:00 (de 2h em 2h → 7 horários)
+  "Sábado": ["07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+
+  // Domingo: 07:00 às 19:00 (de 2h em 2h → 7 horários)
+  "Domingo": ["07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00"]
 };
 
 // ---------- ESTADO ----------
@@ -69,9 +75,8 @@ let catAtiva = "urbano";
 
 // ---------- HORÁRIOS DINÂMICOS ----------
 function atualizarHorarios() {
-  const diaSelect  = document.getElementById("clienteData");
+  const dia        = document.getElementById("clienteData").value;
   const horaSelect = document.getElementById("clienteHora");
-  const dia        = diaSelect.value;
 
   horaSelect.innerHTML = "";
 
@@ -81,10 +86,9 @@ function atualizarHorarios() {
   }
 
   const lista = horariosPorDia[dia] || [];
-
   lista.forEach(h => {
-    const opt   = document.createElement("option");
-    opt.value   = h;
+    const opt       = document.createElement("option");
+    opt.value       = h;
     opt.textContent = h;
     horaSelect.appendChild(opt);
   });
@@ -129,18 +133,16 @@ function renderGrid(cat) {
 
 function switchCat(cat, btn) {
   catAtiva = cat;
-  document.querySelectorAll("#tabs-motos .tab-btn")
-    .forEach(b => b.classList.remove("active"));
+  document.querySelectorAll("#tabs-motos .tab-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   renderGrid(cat);
 }
 
 // ---------- CRIAR CARD ----------
 function criarCard(servico) {
-  const card = document.createElement("div");
-  card.className = "service-card";
-  card.id = "card-" + servico.id;
-
+  const card       = document.createElement("div");
+  card.className   = "service-card";
+  card.id          = "card-" + servico.id;
   const noCarrinho = carrinho.some(i => i.id === servico.id);
 
   card.innerHTML = `
@@ -151,22 +153,14 @@ function criarCard(servico) {
     <h3 class="service-name">${servico.nome}</h3>
     <p class="service-desc">${servico.descCurta}</p>
     <p class="service-exemplos">${servico.exemplos}</p>
-
     <div class="service-card-footer">
-      <div class="service-price">
-        R$ ${servico.preco.toFixed(2).replace(".", ",")}
-      </div>
+      <div class="service-price">R$ ${servico.preco.toFixed(2).replace(".", ",")}</div>
     </div>
-
     <div style="display:flex; gap:10px; margin-top:16px;">
-      <button
-        class="btn-secondary"
+      <button class="btn-secondary"
         style="flex:1; padding:10px; font-size:11px; justify-content:center;"
-        onclick="abrirModal(${servico.id})">
-        Veja Mais
-      </button>
-      <button
-        class="add-btn ${noCarrinho ? "in-cart" : ""}"
+        onclick="abrirModal(${servico.id})">Veja Mais</button>
+      <button class="add-btn ${noCarrinho ? "in-cart" : ""}"
         id="addbtn-${servico.id}"
         style="flex:1; justify-content:center;"
         onclick="toggleServico(${servico.id})">
@@ -178,11 +172,9 @@ function criarCard(servico) {
   return card;
 }
 
-// ---------- ATUALIZAR BOTÃO DO CARD ----------
 function atualizarBotaoCard(id) {
   const btn = document.getElementById("addbtn-" + id);
   if (!btn) return;
-
   const noCarrinho         = carrinho.some(i => i.id === id);
   btn.className            = "add-btn " + (noCarrinho ? "in-cart" : "");
   btn.textContent          = noCarrinho ? "✓ Adicionado" : "+ Add";
@@ -228,13 +220,11 @@ function atualizarCarrinho() {
   footer.style.display = "block";
 
   let total = 0;
-
   carrinho.forEach(item => {
     total += item.preco;
-
-    const li = document.createElement("li");
-    li.className = "cart-item";
-    li.innerHTML = `
+    const li       = document.createElement("li");
+    li.className   = "cart-item";
+    li.innerHTML   = `
       <span class="cart-item-icon">${item.icon}</span>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.nome}</div>
