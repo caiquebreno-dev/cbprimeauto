@@ -56,9 +56,39 @@ const servicos = {
   ]
 };
 
+// ---------- HORÁRIOS POR DIA ----------
+const horariosPorDia = {
+  "Segunda a Sexta": ["18:00", "20:00"],
+  "Sábado":          ["07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+  "Domingo":         ["07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00"]
+};
+
 // ---------- ESTADO ----------
 let carrinho = [];
 let catAtiva = "urbano";
+
+// ---------- HORÁRIOS DINÂMICOS ----------
+function atualizarHorarios() {
+  const diaSelect  = document.getElementById("clienteData");
+  const horaSelect = document.getElementById("clienteHora");
+  const dia        = diaSelect.value;
+
+  horaSelect.innerHTML = "";
+
+  if (!dia) {
+    horaSelect.innerHTML = '<option value="">Selecione o dia primeiro</option>';
+    return;
+  }
+
+  const lista = horariosPorDia[dia] || [];
+
+  lista.forEach(h => {
+    const opt   = document.createElement("option");
+    opt.value   = h;
+    opt.textContent = h;
+    horaSelect.appendChild(opt);
+  });
+}
 
 // ---------- RENDER SERVIÇOS ----------
 function renderServicos() {
@@ -71,10 +101,10 @@ function renderCatButtons() {
   if (!wrapper) return;
 
   const cats = [
-    { key: "urbano", label: "Uso Urbano", icon: "fa-city" },
-    { key: "naked", label: "Naked", icon: "fa-gauge-high" },
-    { key: "trail", label: "Trail / Adventure", icon: "fa-mountain" },
-    { key: "scooter", label: "Scooter", icon: "fa-circle-dot" }
+    { key: "urbano",  label: "Uso Urbano",       icon: "fa-city"       },
+    { key: "naked",   label: "Naked",             icon: "fa-gauge-high" },
+    { key: "trail",   label: "Trail / Adventure", icon: "fa-mountain"   },
+    { key: "scooter", label: "Scooter",           icon: "fa-circle-dot" }
   ];
 
   wrapper.innerHTML = cats.map(c => `
@@ -153,17 +183,17 @@ function atualizarBotaoCard(id) {
   const btn = document.getElementById("addbtn-" + id);
   if (!btn) return;
 
-  const noCarrinho = carrinho.some(i => i.id === id);
-  btn.className = "add-btn " + (noCarrinho ? "in-cart" : "");
-  btn.textContent = noCarrinho ? "✓ Adicionado" : "+ Add";
-  btn.style.flex = "1";
+  const noCarrinho         = carrinho.some(i => i.id === id);
+  btn.className            = "add-btn " + (noCarrinho ? "in-cart" : "");
+  btn.textContent          = noCarrinho ? "✓ Adicionado" : "+ Add";
+  btn.style.flex           = "1";
   btn.style.justifyContent = "center";
 }
 
 // ---------- CARRINHO ----------
 function toggleServico(id) {
   const servico = servicos.motos.find(s => s.id === id);
-  const existe = carrinho.some(item => item.id === id);
+  const existe  = carrinho.some(item => item.id === id);
 
   if (existe) {
     carrinho = carrinho.filter(item => item.id !== id);
@@ -178,23 +208,23 @@ function toggleServico(id) {
 }
 
 function atualizarCarrinho() {
-  const list = document.getElementById("cartList");
-  const empty = document.getElementById("cartEmpty");
-  const footer = document.getElementById("cartFooter");
+  const list    = document.getElementById("cartList");
+  const empty   = document.getElementById("cartEmpty");
+  const footer  = document.getElementById("cartFooter");
   const totalEl = document.getElementById("cartTotal");
-  const badge = document.getElementById("cartBadge");
+  const badge   = document.getElementById("cartBadge");
 
   list.innerHTML = "";
 
   if (carrinho.length === 0) {
-    empty.style.display = "block";
+    empty.style.display  = "block";
     footer.style.display = "none";
     badge.classList.remove("visible");
     badge.textContent = "0";
     return;
   }
 
-  empty.style.display = "none";
+  empty.style.display  = "none";
   footer.style.display = "block";
 
   let total = 0;
@@ -217,49 +247,18 @@ function atualizarCarrinho() {
   });
 
   totalEl.textContent = "R$ " + total.toFixed(2).replace(".", ",");
-  badge.textContent = carrinho.length;
+  badge.textContent   = carrinho.length;
   badge.classList.add("visible");
-}
-
-// ---------- HORÁRIOS DINÂMICOS ----------
-function atualizarHorarios() {
-  const diaSelect = document.getElementById("clienteData");
-  const horaSelect = document.getElementById("clienteHora");
-  const diaSelecionado = diaSelect.value;
-  
-  horaSelect.innerHTML = "";
-  
-  let horarios = [];
-  
-  if (diaSelecionado === "Sexta à Noite") {
-    // 17:30 até 21:00 (intervalos de 1 hora)
-    horarios = ["17:30", "18:30", "19:30", "20:30"];
-  } else if (diaSelecionado === "Sábado" || diaSelecionado === "Domingo") {
-    // 07:00 até 19:00 (intervalos de 1 hora)
-    for (let h = 7; h <= 19; h++) {
-      let horaStr = h < 10 ? "0" + h : "" + h;
-      horarios.push(horaStr + ":00");
-    }
-  } else {
-    horarios = ["Selecione o dia primeiro"];
-  }
-  
-  horarios.forEach(hora => {
-    let option = document.createElement("option");
-    option.value = hora === "Selecione o dia primeiro" ? "" : hora;
-    option.textContent = hora;
-    horaSelect.appendChild(option);
-  });
 }
 
 // ---------- WHATSAPP ----------
 function finalizarPedido() {
-  const nome = document.getElementById("clienteNome").value.trim();
-  const tel = document.getElementById("clienteTel").value.trim();
-  const data = document.getElementById("clienteData").value;
-  const hora = document.getElementById("clienteHora").value;
+  const nome    = document.getElementById("clienteNome").value.trim();
+  const tel     = document.getElementById("clienteTel").value.trim();
+  const data    = document.getElementById("clienteData").value;
+  const hora    = document.getElementById("clienteHora").value;
   const veiculo = document.getElementById("clienteVeiculo").value.trim();
-  const obs = document.getElementById("clienteObs").value.trim();
+  const obs     = document.getElementById("clienteObs").value.trim();
 
   if (!nome || !tel || !data || !hora || carrinho.length === 0) {
     mostrarToast("Preencha tudo! Ou selecione um serviço!", "warning");
@@ -286,7 +285,7 @@ function finalizarPedido() {
 }
 
 // ---------- MENU MOBILE ----------
-const hamburger = document.getElementById("hamburger");
+const hamburger  = document.getElementById("hamburger");
 const mobileMenu = document.getElementById("mobileMenu");
 
 hamburger.addEventListener("click", () => {
@@ -319,20 +318,20 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 // ---------- TOAST ----------
 function mostrarToast(msg, type) {
-  const toast = document.getElementById("toast");
-  const toastMsg = document.getElementById("toastMsg");
+  const toast     = document.getElementById("toast");
+  const toastMsg  = document.getElementById("toastMsg");
   const toastIcon = document.getElementById("toastIcon");
 
   toastMsg.textContent = msg;
 
   if (type === "add") {
-    toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+    toastIcon.innerHTML   = '<i class="fa-solid fa-circle-check"></i>';
     toastIcon.style.color = "#4ade80";
   } else if (type === "remove") {
-    toastIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+    toastIcon.innerHTML   = '<i class="fa-solid fa-circle-xmark"></i>';
     toastIcon.style.color = "#f87171";
   } else if (type === "warning") {
-    toastIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+    toastIcon.innerHTML   = '<i class="fa-solid fa-triangle-exclamation"></i>';
     toastIcon.style.color = "#fbbf24";
   }
 
@@ -345,12 +344,12 @@ function abrirModal(id) {
   const servico = servicos.motos.find(s => s.id === id);
   if (!servico) return;
 
-  document.getElementById("modalIcon").innerHTML = servico.icon;
+  document.getElementById("modalIcon").innerHTML    = servico.icon;
   document.getElementById("modalTitle").textContent = servico.nome + " — " + servico.catLabel;
-  document.getElementById("modalDesc").textContent = servico.desc;
+  document.getElementById("modalDesc").textContent  = servico.desc;
   document.getElementById("modalPrice").textContent = "R$ " + servico.preco.toFixed(2).replace(".", ",");
 
-  const addBtn = document.getElementById("modalAddBtn");
+  const addBtn   = document.getElementById("modalAddBtn");
   addBtn.onclick = () => { toggleServico(servico.id); fecharModal(); };
 
   document.getElementById("serviceModal").classList.add("active");
