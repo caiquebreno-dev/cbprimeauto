@@ -86,7 +86,7 @@ body { background: var(--black); color: var(--white); font-family: var(--font-bo
 
 .nav-container { display: flex; align-items: center; justify-content: space-between; height: 90px; max-width: 1160px; margin: 0 auto; padding: 0 24px; gap: 20px; }
 
-.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+.nav-logo { display: flex; align-items: center; gap: 6px; text-decoration: none; flex-shrink: 0; }
 
 .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
 .nav-links a { color: var(--silver-light); text-decoration: none; font-size: 12px; font-weight: 200; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 14px; border-radius: 6px; transition: color 0.25s, background 0.25s; }
