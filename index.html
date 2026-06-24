@@ -8,671 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-/* =============================================
-   CB PRIME AUTO — IDENTIDADE NAVY/BRANCO
-   ============================================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-strong, b { font-weight: 600; }
-h1, h2, h3, h4, h5, h6 { font-weight: 300; }
-
-:root {
-  /* Paleta Navy + Branco (baseada nas logos) */
-  --navy:        #0D1B2A;
-  --navy-mid:    #112035;
-  --navy-card:   #152640;
-  --navy-light:  #1A2E4A;
-  --navy-glass:  rgba(13, 27, 42, 0.85);
-  --white:       #F0F4F8;
-  --white-pure:  #FFFFFF;
-  --silver:      #8FA3BC;
-  --silver-light:#C8D6E5;
-
-  /* Acento: branco/off-white como elemento de destaque */
-  --accent:         #FFFFFF;
-  --accent-dim:     rgba(255,255,255,0.15);
-  --accent-border:  rgba(255,255,255,0.20);
-  --accent-glow:    rgba(255,255,255,0.10);
-
-  /* Tipografia */
-  --font-display: 'Titillium Web', sans-serif;
-  --font-body:    'Titillium Web', sans-serif;
-
-  /* Misc */
-  --radius:    14px;
-  --radius-sm: 8px;
-  --transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.55);
-}
-
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  background: var(--navy);
-  color: var(--white);
-  font-family: var(--font-body);
-  line-height: 1.65;
-  overflow-x: hidden;
-}
-
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: linear-gradient(var(--navy-light), var(--silver)); border-radius: 4px; }
-::selection { background: var(--silver); color: var(--navy); }
-
-/* ---------- CANVAS ---------- */
-#particles-canvas {
-  position: fixed; inset: 0; z-index: 0;
-  pointer-events: none; opacity: 0.30;
-}
-
-/* ---------- CONTAINER ---------- */
-.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-
-/* ---------- UTILITÁRIOS ---------- */
-.white-divider {
-  width: 64px; height: 2px;
-  background: linear-gradient(90deg, var(--white-pure), transparent);
-  margin: 16px auto 36px;
-}
-
-.section-tag {
-  display: inline-block;
-  font-size: 10px; font-weight: 300;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--white-pure);
-  border: 1px solid var(--accent-border);
-  border-radius: 100px; padding: 5px 18px;
-  margin-bottom: 14px;
-  background: rgba(255,255,255,0.06);
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 4.5vw, 3rem);
-  font-weight: 300; line-height: 1.15;
-  color: var(--white); letter-spacing: 1px;
-}
-.section-title span { color: var(--white-pure); opacity: 0.85; }
-
-.section-desc { color: var(--silver); font-size: 15px; margin-top: -16px; margin-bottom: 8px; }
-.section-header { text-align: center; margin-bottom: 48px; }
-
-.glass-panel {
-  background: var(--navy-glass);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  border: 1px solid var(--accent-border);
-  border-radius: var(--radius);
-}
-
-/* Botões */
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--white-pure);
-  color: var(--navy);
-  font-family: var(--font-body); font-weight: 600;
-  font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
-  border: none; border-radius: var(--radius-sm);
-  padding: 15px 32px; cursor: pointer;
-  transition: var(--transition); position: relative; overflow: hidden;
-}
-.btn-primary:hover {
-  box-shadow: 0 0 30px rgba(255,255,255,0.25), 0 8px 30px rgba(0,0,0,0.4);
-  transform: translateY(-2px);
-  background: var(--silver-light);
-}
-
-.btn-secondary {
-  display: inline-flex; align-items: center;
-  background: transparent; color: var(--white-pure);
-  font-family: var(--font-body); font-weight: 300;
-  font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: var(--radius-sm); padding: 14px 28px;
-  cursor: pointer; transition: var(--transition);
-}
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 0 24px rgba(255,255,255,0.1);
-  transform: translateY(-2px);
-}
-
-/* Reveal */
-.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* =============================================
-   HEADER / NAV
-   ============================================= */
-#header {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000; transition: background 0.4s, box-shadow 0.4s;
-}
-#header.scrolled {
-  background: rgba(13, 27, 42, 0.96);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 var(--accent-border), 0 10px 40px rgba(0,0,0,0.5);
-}
-
-.nav-container {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 90px; max-width: 1160px; margin: 0 auto;
-  padding: 0 24px; gap: 20px;
-}
-
-/* Logo dupla: boneco + logo */
-.nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  text-decoration: none; flex-shrink: 0;
-}
-.nav-logo img.logo-boneco {
-  height: 68px; object-fit: contain; filter: brightness(0) invert(1);
-}
-.nav-logo img.logo-text {
-  height: 48px; object-fit: contain; filter: brightness(0) invert(1);
-}
-
-/* Nav links */
-.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
-.nav-links a {
-  color: var(--silver-light); text-decoration: none;
-  font-size: 12px; font-weight: 300; letter-spacing: 1.5px; text-transform: uppercase;
-  padding: 8px 14px; border-radius: 6px;
-  transition: color 0.25s, background 0.25s;
-}
-.nav-links a:hover { color: var(--white-pure); background: rgba(255,255,255,0.08); }
-
-/* Nav actions */
-.nav-actions { display: flex; align-items: center; gap: 10px; }
-
-.cart-nav-btn {
-  position: relative; display: flex; align-items: center; gap: 7px;
-  background: transparent; border: 1px solid var(--accent-border);
-  border-radius: var(--radius-sm); padding: 9px 16px;
-  color: var(--silver-light); font-size: 12px; font-weight: 300;
-  letter-spacing: 1px; cursor: pointer; transition: var(--transition); white-space: nowrap;
-}
-.cart-nav-btn:hover { border-color: var(--white-pure); color: var(--white-pure); background: rgba(255,255,255,0.08); }
-
-.cart-nav-badge {
-  position: absolute; top: -7px; right: -7px;
-  width: 20px; height: 20px;
-  background: var(--white-pure); color: var(--navy);
-  font-size: 10px; font-weight: 700; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  transform: scale(0); opacity: 0;
-  transition: 0.3s cubic-bezier(0.34,1.56,0.64,1);
-}
-.cart-nav-badge.visible { transform: scale(1); opacity: 1; }
-
-.hamburger {
-  display: none; flex-direction: column; justify-content: center; gap: 5px;
-  background: none; border: 1px solid var(--accent-border);
-  border-radius: var(--radius-sm); padding: 10px; cursor: pointer;
-  transition: border-color 0.25s;
-}
-.hamburger:hover { border-color: var(--white-pure); }
-.hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--white-pure); border-radius: 2px;
-  transition: var(--transition);
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-.mobile-menu {
-  display: none; flex-direction: column;
-  background: rgba(13, 27, 42, 0.99);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid var(--accent-border);
-  padding: 8px 24px 20px;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  color: var(--silver-light); text-decoration: none;
-  font-size: 14px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase;
-  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-  transition: color 0.2s, padding-left 0.2s;
-}
-.mobile-menu a:hover { color: var(--white-pure); padding-left: 8px; }
-
-/* =============================================
-   HERO
-   ============================================= */
-#hero {
-  position: relative; min-height: 100vh;
-  display: flex; align-items: center; justify-content: flex-start;
-  overflow: hidden;
-  background-image: url('Imagens/beautiful-car-washing-service.jpg');
-  background-size: cover; background-position: center; background-repeat: no-repeat;
-}
-#hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(13,27,42,0.97) 0%, rgba(13,27,42,0.75) 50%, rgba(13,27,42,0.25) 100%);
-  z-index: 1;
-}
-.hero-content {
-  position: relative; z-index: 2; text-align: left;
-  padding: 140px 5%; max-width: 800px; margin: 0;
-}
-.hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300;
-  line-height: 1.1; color: var(--white-pure); letter-spacing: 2px; margin-bottom: 24px;
-}
-.hero-subtitle {
-  font-size: 1.1rem; color: var(--silver-light); margin-bottom: 40px;
-  line-height: 1.6; max-width: 500px;
-}
-.hero-cta { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; }
-.hero-cta .btn-primary {
-  background: var(--white-pure); color: var(--navy); border-radius: 0;
-  font-weight: 700; padding: 14px 32px; font-size: 13px;
-  text-transform: uppercase; letter-spacing: 2px; box-shadow: none;
-}
-.hero-cta .btn-primary:hover { background: var(--silver-light); transform: none; }
-.hero-cta .btn-secondary {
-  background: transparent; color: var(--white-pure);
-  border: 1px solid rgba(255,255,255,0.4); border-radius: 0;
-  font-weight: 300; padding: 14px 32px;
-  font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-}
-.hero-cta .btn-secondary:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: var(--white-pure); box-shadow: none; transform: none;
-}
-
-/* =============================================
-   SOBRE
-   ============================================= */
-.section-sobre {
-  padding: 110px 0; position: relative; background: var(--navy-mid);
-}
-.section-sobre::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-}
-.sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-.sobre-text p { color: var(--silver-light); font-size: 15px; line-height: 1.8; margin-bottom: 18px; }
-.sobre-text p strong { color: var(--white-pure); font-weight: 600; }
-.sobre-text p em { color: var(--white); font-style: normal; font-weight: 400; }
-.sobre-lead { font-size: 17px !important; color: var(--white) !important; font-weight: 300; letter-spacing: 0.3px; }
-.sobre-destaque {
-  display: flex; align-items: flex-start; gap: 12px; margin-top: 24px;
-  padding: 20px 24px;
-  border-left: 2px solid var(--white-pure);
-  background: rgba(255,255,255,0.04);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-size: 14px; color: var(--silver-light); font-style: italic; line-height: 1.6;
-}
-.destaque-icon { color: var(--white-pure); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-
-.sobre-valores { display: flex; flex-direction: column; gap: 16px; }
-.valor-card {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 22px 24px; background: var(--navy-card);
-  border: 1px solid var(--accent-border);
-  border-radius: var(--radius-sm); transition: var(--transition);
-}
-.valor-card:hover {
-  border-color: rgba(255,255,255,0.4); transform: translateX(6px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.06);
-}
-.valor-icon {
-  font-size: 26px; flex-shrink: 0; width: 48px; height: 48px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.06); border: 1px solid var(--accent-border); border-radius: 10px;
-  color: var(--white-pure);
-}
-.valor-card h4 { font-size: 16px; font-weight: 400; color: var(--white-pure); margin-bottom: 5px; letter-spacing: 1px; }
-.valor-card p { font-size: 13px; color: var(--silver); line-height: 1.55; }
-
-/* =============================================
-   SERVIÇOS
-   ============================================= */
-.section-servicos {
-  padding: 110px 0; position: relative;
-}
-.section-servicos::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-}
-
-.tabs-wrapper { display: flex; justify-content: center; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
-.tab-btn {
-  display: flex; align-items: center; gap: 9px; padding: 13px 36px;
-  border: 1px solid var(--accent-border); border-radius: 100px;
-  background: transparent; color: var(--silver);
-  font-size: 13px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase;
-  cursor: pointer; transition: var(--transition);
-}
-.tab-btn span { font-size: 18px; }
-.tab-btn:hover { border-color: var(--white-pure); color: var(--white-pure); background: rgba(255,255,255,0.06); }
-.tab-btn.active {
-  background: var(--white-pure); border-color: transparent;
-  color: var(--navy); box-shadow: 0 0 24px rgba(255,255,255,0.15);
-  font-weight: 700;
-}
-
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
-
-.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 22px; }
-
-.service-card {
-  background: var(--navy-card); border: 1px solid var(--accent-border);
-  border-radius: var(--radius); padding: 30px 26px 26px;
-  display: flex; flex-direction: column; gap: 14px;
-  position: relative; overflow: hidden; transition: var(--transition); cursor: default;
-}
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--navy-light), var(--white-pure));
-  opacity: 0; transition: opacity 0.35s;
-}
-.service-card::after {
-  content: ''; position: absolute; top: -50%; left: -60%; width: 60%; height: 200%;
-  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%);
-  transform: skewX(-15deg); transition: left 0.7s ease; pointer-events: none;
-}
-.service-card:hover {
-  border-color: rgba(255,255,255,0.35); transform: translateY(-6px);
-  box-shadow: var(--shadow-card), 0 0 40px rgba(255,255,255,0.05);
-}
-.service-card:hover::before { opacity: 1; }
-.service-card:hover::after { left: 120%; }
-
-.service-icon-box {
-  width: 54px; height: 54px; border-radius: 12px;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; flex-shrink: 0; color: var(--white-pure);
-}
-.service-name { font-size: 20px; font-weight: 300; color: var(--white); letter-spacing: 0.5px; line-height: 1.2; }
-.service-desc { font-size: 13px; color: var(--silver); line-height: 1.65; flex: 1; }
-.service-card-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 4px;
-}
-.service-price { font-size: 26px; font-weight: 300; color: var(--white-pure); line-height: 1; }
-.service-cat-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 10px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--white-pure); background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.20); border-radius: 100px; padding: 4px 12px; align-self: flex-start;
-}
-.service-exemplos { font-size: 12px; color: var(--silver); font-style: italic; margin-top: -6px; line-height: 1.5; }
-
-.add-btn {
-  display: flex; align-items: center; gap: 6px;
-  background: transparent; border: 1px solid rgba(255,255,255,0.3);
-  color: var(--white-pure); font-size: 11px; font-weight: 300;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  padding: 10px 18px; border-radius: var(--radius-sm);
-  cursor: pointer; transition: var(--transition); white-space: nowrap;
-}
-.add-btn:hover {
-  background: var(--white-pure); color: var(--navy);
-  border-color: transparent; box-shadow: 0 0 20px rgba(255,255,255,0.15); font-weight: 700;
-}
-.add-btn.in-cart { background: rgba(255,255,255,0.12); border-color: var(--white-pure); color: var(--white-pure); }
-
-/* =============================================
-   AGENDAMENTO / CARRINHO
-   ============================================= */
-.section-agendamento {
-  padding: 110px 0; background: var(--navy-mid); position: relative;
-}
-.section-agendamento::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-}
-.agendamento-grid { display: grid; grid-template-columns: 1fr 400px; gap: 28px; align-items: start; }
-.cart-panel, .form-panel { padding: 36px 32px; }
-
-.panel-title {
-  font-size: 20px; font-weight: 300; color: var(--white); margin-bottom: 26px;
-  display: flex; align-items: center; gap: 10px; letter-spacing: 1px;
-}
-.cart-empty { text-align: center; padding: 50px 20px; color: var(--silver); }
-.cart-empty-img { font-size: 52px; opacity: 0.2; margin-bottom: 14px; }
-.cart-empty p { font-size: 14px; letter-spacing: 0.5px; line-height: 1.7; }
-
-.cart-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.cart-item {
-  display: flex; align-items: center; gap: 14px;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px; padding: 15px 18px; transition: var(--transition);
-  animation: itemIn 0.3s ease;
-}
-@keyframes itemIn { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: translateX(0); } }
-.cart-item:hover { border-color: var(--accent-border); background: rgba(255,255,255,0.05); }
-.cart-item-icon { font-size: 22px; flex-shrink: 0; color: var(--white-pure); }
-.cart-item-info { flex: 1; }
-.cart-item-name { font-size: 15px; font-weight: 300; color: var(--white); letter-spacing: 0.5px; line-height: 1.2; }
-.cart-item-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--silver-light); margin-top: 2px; }
-.cart-item-price { font-size: 17px; font-weight: 300; color: var(--white-pure); flex-shrink: 0; }
-.cart-remove-btn {
-  background: transparent; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px;
-  color: var(--silver); width: 30px; height: 30px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 14px; transition: 0.2s; flex-shrink: 0;
-}
-.cart-remove-btn:hover { border-color: #e55; color: #e55; background: rgba(220,80,80,0.1); }
-
-.cart-footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--accent-border); }
-.cart-total-row { display: flex; justify-content: space-between; align-items: center; }
-.cart-total-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); }
-.cart-total-value { font-size: 32px; font-weight: 300; color: var(--white-pure); text-shadow: 0 0 20px rgba(255,255,255,0.2); }
-
-/* Formulário */
-.form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
-.form-group label { font-size: 10px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: var(--silver-light); }
-.form-group input, .form-group select, .form-group textarea {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: var(--radius-sm); padding: 12px 16px; color: var(--white);
-  font-family: var(--font-body); font-size: 14px; outline: none; width: 100%;
-  transition: border-color 0.25s, box-shadow 0.25s;
-}
-.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(143,163,188,0.4); }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-  border-color: rgba(255,255,255,0.4); box-shadow: 0 0 0 3px rgba(255,255,255,0.07);
-}
-.form-group select option { background: var(--navy-card); color: var(--white); }
-.form-group textarea { resize: vertical; min-height: 80px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-.btn-whatsapp {
-  width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px;
-  padding: 17px; background: linear-gradient(135deg, #128C7E, #25D366);
-  border: none; border-radius: 10px; color: white;
-  font-size: 13px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase;
-  cursor: pointer; margin-top: 20px; transition: var(--transition); position: relative; overflow: hidden;
-}
-.btn-whatsapp::before {
-  content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-  background: rgba(255,255,255,0.12); transition: left 0.5s ease;
-}
-.btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(37,211,102,0.35); }
-.btn-whatsapp:hover::before { left: 150%; }
-
-/* =============================================
-   LOCALIZAÇÃO
-   ============================================= */
-.section-localizacao { padding: 110px 0; background: var(--navy); position: relative; }
-.localizacao-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.loc-text { max-width: 500px; }
-.loc-desc { color: var(--silver); font-size: 15px; line-height: 1.7; margin-top: 16px; margin-bottom: 32px; }
-.loc-info { display: flex; flex-direction: column; gap: 24px; }
-.loc-item { display: flex; align-items: flex-start; gap: 16px; }
-.loc-icon {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(255,255,255,0.06); border: 1px solid var(--accent-border);
-  color: var(--white-pure); display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
-}
-.loc-item h4 { font-size: 15px; font-weight: 400; color: var(--white); margin-bottom: 4px; letter-spacing: 0.5px; }
-.loc-item p, .loc-item a { font-size: 14px; color: var(--silver); line-height: 1.5; text-decoration: none; transition: color 0.2s; }
-.loc-item a:hover { color: var(--white-pure); }
-.loc-map { width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--accent-border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-
-/* =============================================
-   CONTATO
-   ============================================= */
-.section-contato { padding: 100px 0; position: relative; }
-.section-contato::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-}
-.contato-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 20px; }
-.contato-card {
-  padding: 32px 26px; background: var(--navy-card);
-  border: 1px solid var(--accent-border); border-radius: var(--radius);
-  text-align: center; transition: var(--transition);
-}
-.contato-card:hover {
-  border-color: rgba(255,255,255,0.4); transform: translateY(-5px);
-  box-shadow: var(--shadow-card), 0 0 30px rgba(255,255,255,0.06);
-}
-.contato-icon { display: block; font-size: 36px; margin-bottom: 16px; color: var(--white-pure); }
-.contato-card h4 { font-size: 16px; font-weight: 400; color: var(--white-pure); margin-bottom: 8px; letter-spacing: 1px; }
-.contato-card p, .contato-card a { font-size: 14px; color: var(--silver); line-height: 1.65; text-decoration: none; transition: color 0.2s; }
-.contato-card a:hover { color: var(--white-pure); }
-
-/* =============================================
-   FOOTER
-   ============================================= */
-.footer { background: #070E17; border-top: 1px solid var(--accent-border); padding: 52px 0 0; }
-.footer-inner {
-  max-width: 1160px; margin: 0 auto; padding: 0 24px 40px;
-  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
-}
-/* Logo dupla no footer */
-.footer-logo { display: flex; align-items: center; gap: 12px; }
-.footer-logo img.logo-boneco { height: 72px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9; }
-.footer-logo img.logo-text   { height: 44px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9; }
-
-.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-.footer-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--white-pure); }
-
-.footer-social { display: flex; gap: 10px; }
-.social-btn {
-  width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--accent-border);
-  display: flex; align-items: center; justify-content: center;
-  text-decoration: none; font-size: 16px; color: var(--silver); transition: var(--transition);
-}
-.social-btn.wa { color: #25D366; border-color: rgba(37,211,102,0.3); }
-.social-btn.wa:hover { background: rgba(37,211,102,0.1); border-color: #25D366; }
-.social-btn.ig:hover { background: rgba(255,255,255,0.08); border-color: var(--white-pure); color: var(--white-pure); }
-.social-btn.tk:hover { background: rgba(255,255,255,0.08); border-color: var(--white-pure); color: var(--white-pure); }
-
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.04); text-align: center; padding: 18px 24px; }
-.footer-bottom p { font-size: 11px; letter-spacing: 1px; color: rgba(143,163,188,0.35); }
-
-/* =============================================
-   FLOATING WHATSAPP
-   ============================================= */
-.float-whatsapp {
-  position: fixed; bottom: 28px; right: 28px; z-index: 900;
-  width: 58px; height: 58px; border-radius: 50%;
-  background: linear-gradient(135deg, #128C7E, #25D366);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 6px 28px rgba(37,211,102,0.45); transition: var(--transition); text-decoration: none;
-}
-.float-whatsapp:hover { transform: scale(1.1) translateY(-3px); box-shadow: 0 14px 40px rgba(37,211,102,0.6); }
-.float-whatsapp::before {
-  content: ''; position: absolute; inset: -7px; border-radius: 50%;
-  border: 2px solid rgba(37,211,102,0.4); animation: waPulse 2.5s ease-in-out infinite;
-}
-@keyframes waPulse { 0%,100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 0; transform: scale(1.4); } }
-
-/* =============================================
-   TOAST
-   ============================================= */
-.toast {
-  position: fixed; bottom: 100px; right: 28px; z-index: 2000;
-  background: rgba(21, 38, 64, 0.98); backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
-  padding: 13px 20px; color: var(--white); font-size: 14px;
-  display: flex; align-items: center; gap: 10px; max-width: 280px;
-  pointer-events: none; opacity: 0; transform: translateY(16px);
-  transition: 0.38s cubic-bezier(0.25,0.8,0.25,1);
-}
-.toast.show { opacity: 1; transform: translateY(0); }
-
-/* =============================================
-   MODAL
-   ============================================= */
-.modal-overlay {
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-  z-index: 2500; display: flex; align-items: center; justify-content: center;
-  padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-}
-.modal-overlay.active { opacity: 1; pointer-events: auto; }
-.modal-content {
-  position: relative; background: var(--navy-card); width: 100%; max-width: 450px;
-  border-radius: var(--radius); padding: 32px 28px;
-  transform: translateY(30px); transition: transform 0.3s cubic-bezier(0.25,0.8,0.25,1);
-}
-.modal-overlay.active .modal-content { transform: translateY(0); }
-.modal-close {
-  position: absolute; top: 16px; right: 16px;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-  color: var(--silver); border-radius: 50%; width: 32px; height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; cursor: pointer; transition: var(--transition);
-}
-.modal-close:hover { background: rgba(255,255,255,0.12); color: var(--white-pure); border-color: var(--white-pure); }
-.modal-header {
-  display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
-  padding-bottom: 20px; border-bottom: 1px solid var(--accent-border);
-}
-.modal-icon {
-  width: 54px; height: 54px; border-radius: 12px;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
-  display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;
-  color: var(--white-pure);
-}
-.modal-title { font-size: 20px; font-weight: 300; color: var(--white); line-height: 1.2; }
-.modal-body p { font-size: 14px; color: var(--silver); line-height: 1.6; margin-bottom: 24px; }
-.modal-price { font-size: 28px; font-weight: 300; color: var(--white-pure); margin-bottom: 24px; }
-.modal-footer { display: flex; justify-content: flex-end; }
-.modal-footer .btn-primary { width: 100%; justify-content: center; }
-
-/* =============================================
-   RESPONSIVE
-   ============================================= */
-@media (max-width: 960px) {
-  .sobre-grid { grid-template-columns: 1fr; gap: 36px; }
-  .agendamento-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .localizacao-grid { grid-template-columns: 1fr; gap: 40px; }
-  .cart-nav-label { display: none; }
-}
-@media (max-width: 680px) {
-  .hero-title { font-size: clamp(2.8rem, 14vw, 5rem); }
-  .form-row { grid-template-columns: 1fr; }
-  .hero-cta { flex-direction: column; }
-  .hero-cta .btn-primary, .hero-cta .btn-secondary { width: 100%; justify-content: center; }
-  .services-grid { grid-template-columns: 1fr; }
-  .glass-panel { padding: 24px 18px; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
-  .float-whatsapp { bottom: 18px; right: 18px; }
-  .toast { right: 16px; }
-}
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -682,25 +18,21 @@ body {
   <header id="header">
     <nav class="nav-container">
       <a href="#hero" class="nav-logo">
-        <img src="Imagens/boneco-sem-fundo.png" alt="Mascote CB Prime" class="logo-boneco" />
-        <img src="Imagens/logo-sem-fundo.png"   alt="Logo CB Prime Auto" class="logo-text" />
+        <img src="Imagens/ChatGPT Image 30 de abr. de 2026, 12_21_22.png"
+             alt="Logo CB Prime Auto"
+             style="height:90px; object-fit:contain; mix-blend-mode:screen;" />
       </a>
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero">Início</a></li>
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#agendamento">Agendamento</a></li>
+        <li><a href="#horarios">Horários</a></li>
         <li><a href="#contato">Contato</a></li>
         <li><a href="#localizacao">Localização</a></li>
       </ul>
 
       <div class="nav-actions">
-        <button class="cart-nav-btn" id="cartNavBtn" onclick="scrollToSection('agendamento')">
-          <span class="cart-nav-icon"><i class="fa-solid fa-cart-shopping"></i></span>
-          <span class="cart-nav-label">Carrinho</span>
-          <span class="cart-nav-badge" id="cartBadge">0</span>
-        </button>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -711,7 +43,7 @@ body {
       <a href="#hero"        onclick="closeMobileMenu()">Início</a>
       <a href="#sobre"       onclick="closeMobileMenu()">Sobre Nós</a>
       <a href="#servicos"    onclick="closeMobileMenu()">Serviços</a>
-      <a href="#agendamento" onclick="closeMobileMenu()">Agendamento</a>
+      <a href="#horarios"    onclick="closeMobileMenu()">Horários</a>
       <a href="#contato"     onclick="closeMobileMenu()">Contato</a>
       <a href="#localizacao" onclick="closeMobileMenu()">Localização</a>
     </div>
@@ -719,11 +51,14 @@ body {
 
   <!-- ============ HERO ============ -->
   <section id="hero">
+    <div class="hero-glow"></div>
     <div class="hero-content">
       <h1 class="hero-title reveal">SEU VEÍCULO<br>EM NÍVEL PREMIUM</h1>
       <p class="hero-subtitle reveal">Detalhes que fazem a diferença.</p>
       <div class="hero-cta reveal">
-        <button class="btn-primary" onclick="scrollToSection('agendamento')">Agendar Agora</button>
+        <a href="https://wa.me/5585998587467" target="_blank" class="btn-primary">
+          <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+        </a>
         <button class="btn-secondary" onclick="scrollToSection('servicos')">
           Ver Serviços <i class="fa-solid fa-arrow-right" style="font-size:14px; margin-left:6px;"></i>
         </button>
@@ -737,7 +72,7 @@ body {
       <div class="section-header reveal">
         <span class="section-tag">Quem Somos</span>
         <h2 class="section-title">Sobre a <span>CB Prime Auto</span></h2>
-        <div class="white-divider"></div>
+        <div class="gold-divider"></div>
       </div>
       <div class="sobre-grid">
         <div class="sobre-text reveal">
@@ -747,11 +82,13 @@ body {
           </p>
           <p>
             A CB Prime Auto surge como uma empresa <em>iniciante, mas com uma missão clara</em>: tratar
-            cada moto com o máximo de cuidado, atenção e profissionalismo.
+            cada moto com o máximo de cuidado, atenção e profissionalismo. Acreditamos que uma moto bem
+            cuidada reflete a personalidade do seu dono — e é exatamente isso que fazemos.
           </p>
           <p>
             Utilizamos produtos de qualidade e técnicas especializadas, sempre com foco em superar as
-            expectativas dos nossos clientes.
+            expectativas dos nossos clientes. Ainda estamos construindo nossa história, mas cada moto
+            que passa pelas nossas mãos é tratada como se fosse única.
           </p>
           <div class="sobre-destaque">
             <span class="destaque-icon"><i class="fa-solid fa-star"></i></span>
@@ -786,89 +123,59 @@ body {
       <div class="section-header reveal">
         <span class="section-tag">O Que Oferecemos</span>
         <h2 class="section-title">Nossos <span>Serviços</span></h2>
-        <div class="white-divider"></div>
-        <p class="section-desc">Escolha a categoria da sua moto e adicione o serviço ao carrinho</p>
+        <div class="gold-divider"></div>
+        <p class="section-desc">Escolha a categoria da sua moto</p>
       </div>
+      <!-- TABS geradas pelo script.js -->
       <div class="tabs-wrapper reveal" id="tabs-motos"></div>
+      <!-- GRID preenchido pelo script.js -->
       <div class="tab-panel active" id="tab-motos">
         <div class="services-grid" id="grid-motos"></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ AGENDAMENTO ============ -->
-  <section id="agendamento" class="section-agendamento">
+  <!-- ============ HORÁRIOS ============ -->
+  <section id="horarios" class="section-horarios">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">Agendar</span>
-        <h2 class="section-title">Carrinho & <span>Agendamento</span></h2>
-        <div class="white-divider"></div>
+        <span class="section-tag">Funcionamento</span>
+        <h2 class="section-title">Nossos <span>Horários</span></h2>
+        <div class="gold-divider"></div>
       </div>
 
-      <div class="agendamento-grid">
-        <div class="cart-panel glass-panel reveal">
-          <h3 class="panel-title">
-            <span><i class="fa-solid fa-cart-shopping"></i></span> Serviços Selecionados
-          </h3>
-          <div class="cart-empty" id="cartEmpty">
-            <div class="cart-empty-img"><i class="fa-solid fa-motorcycle"></i></div>
-            <p>Seu carrinho está vazio.<br>Escolha os serviços acima!</p>
-          </div>
-          <ul class="cart-list" id="cartList"></ul>
-          <div class="cart-footer" id="cartFooter" style="display:none;">
-            <div class="cart-total-row">
-              <span class="cart-total-label">Total</span>
-              <span class="cart-total-value" id="cartTotal">R$ 0,00</span>
-            </div>
+      <div class="horarios-grid">
+
+        <div class="horario-card reveal">
+          <div class="horario-icon"><i class="fa-regular fa-calendar-days"></i></div>
+          <div class="horario-info">
+            <span class="horario-dia">Segunda a Sexta</span>
+            <span class="horario-time">18:00 <span class="horario-sep">às</span> 20:00</span>
           </div>
         </div>
 
-        <div class="form-panel glass-panel reveal">
-          <h3 class="panel-title">
-            <span><i class="fa-regular fa-calendar-days"></i></span> Dados do Agendamento
-          </h3>
-          <div class="form-group">
-            <label for="clienteNome">Nome Completo *</label>
-            <input type="text" id="clienteNome" placeholder="Digite seu nome completo" />
+        <div class="horario-card reveal">
+          <div class="horario-icon"><i class="fa-regular fa-clock"></i></div>
+          <div class="horario-info">
+            <span class="horario-dia">Sábado e Domingo</span>
+            <span class="horario-time">07:00 <span class="horario-sep">às</span> 17:00</span>
           </div>
-          <div class="form-group">
-            <label for="clienteTel">WhatsApp *</label>
-            <input type="tel" id="clienteTel" placeholder="(00) 00000-0000" />
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="clienteData">Dia *</label>
-              <select id="clienteData" onchange="atualizarHorarios()">
-                <option value="">Selecione...</option>
-                <option value="Segunda a Sexta">Segunda a Sexta</option>
-                <option value="Sábado">Sábado</option>
-                <option value="Domingo">Domingo</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="clienteHora">Horário *</label>
-              <select id="clienteHora">
-                <option value="">Selecione o dia primeiro</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="clienteVeiculo">Moto</label>
-            <input type="text" id="clienteVeiculo" placeholder="Ex: Yamaha FZ-25 Vermelha 2023" />
-          </div>
-          <div class="form-group">
-            <label for="clienteObs">Observações</label>
-            <textarea id="clienteObs" rows="3" placeholder="Ex: Moto muito suja, atenção especial na roda traseira..."></textarea>
-          </div>
-          <button class="btn-whatsapp" onclick="finalizarPedido()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
-            </svg>
-            Enviar Pedido pelo WhatsApp
-          </button>
         </div>
+
       </div>
+
+      <!-- CTA WhatsApp -->
+      <div class="horarios-cta reveal">
+        <p>Para agendar, entre em contato pelo WhatsApp</p>
+        <a href="https://wa.me/5585998587467" target="_blank" class="btn-whatsapp-cta">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.508A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.374l-.36-.214-3.76.895.944-3.662-.235-.374A9.772 9.772 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
+          </svg>
+          Agendar pelo WhatsApp
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -876,6 +183,7 @@ body {
   <section id="localizacao" class="section-localizacao">
     <div class="container">
       <div class="localizacao-grid">
+
         <div class="loc-text reveal">
           <span class="section-tag">Localização</span>
           <h2 class="section-title">Visite nosso <span>Espaço</span></h2>
@@ -906,18 +214,22 @@ body {
               </div>
             </div>
           </div>
-          <a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532" target="_blank"
-             class="btn-primary" style="margin-top:24px; text-decoration:none;">
+          <a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE"
+             target="_blank" class="btn-primary" style="margin-top:24px; text-decoration:none;">
             Abrir no Google Maps <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i>
           </a>
         </div>
+
         <div class="loc-map reveal">
           <iframe
             src="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            width="100%" height="450" style="border:0; border-radius:var(--radius);"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            width="100%" height="450"
+            style="border:0; border-radius:var(--radius);"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
+
       </div>
     </div>
   </section>
@@ -928,34 +240,41 @@ body {
       <div class="section-header reveal">
         <span class="section-tag">Fale Conosco</span>
         <h2 class="section-title">Entre em <span>Contato</span></h2>
-        <div class="white-divider"></div>
+        <div class="gold-divider"></div>
       </div>
       <div class="contato-grid">
+
         <div class="contato-card reveal">
           <span class="contato-icon"><i class="fa-solid fa-location-dot"></i></span>
           <h4>Localização</h4>
-          <p><a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532" target="_blank">Limoeiro do Norte, CE<br>Brasil</a></p>
+          <p><a href="https://maps.google.com/maps?q=R.%20Raimundo%20Craveiro,%203532%20-%20Lu%C3%ADs%20Alves%20de%20Freitas,%20Limoeiro%20do%20Norte%20-%20CE"
+               target="_blank">Limoeiro do Norte, CE<br>Brasil</a></p>
         </div>
+
         <div class="contato-card reveal">
           <span class="contato-icon"><i class="fa-brands fa-whatsapp"></i></span>
           <h4>WhatsApp</h4>
           <p><a href="https://wa.me/5585998587467" target="_blank">(85) 99858-7467</a></p>
         </div>
+
         <div class="contato-card reveal">
           <span class="contato-icon"><i class="fa-regular fa-clock"></i></span>
           <h4>Horário</h4>
-          <p>Seg – Sex: 18h às 20h<br>Sáb e Dom: 07h às 19h</p>
+          <p>Seg – Sex: 18h às 20h<br>Sáb e Dom: 07h às 17h</p>
         </div>
+
         <div class="contato-card reveal">
           <span class="contato-icon"><i class="fa-brands fa-instagram"></i></span>
           <h4>Instagram</h4>
           <p><a href="https://www.instagram.com/cbprimeauto" target="_blank">@cbprimeauto</a></p>
         </div>
+
         <div class="contato-card reveal">
           <span class="contato-icon"><i class="fa-brands fa-tiktok"></i></span>
           <h4>TikTok</h4>
           <p><a href="https://www.tiktok.com/@cb.prime.auto" target="_blank">@cb.prime.auto</a></p>
         </div>
+
       </div>
     </div>
   </section>
@@ -964,13 +283,14 @@ body {
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="Imagens/boneco-sem-fundo.png" alt="Mascote CB Prime" class="logo-boneco" />
-        <img src="Imagens/logo-sem-fundo.png"   alt="Logo CB Prime Auto" class="logo-text" />
+        <img src="Imagens/ChatGPT Image 30 de abr. de 2026, 11_36_26.png"
+             alt="Logo CB Prime Auto"
+             style="height:120px; object-fit:contain; mix-blend-mode:screen;" />
       </div>
       <div class="footer-links">
         <a href="#sobre">Sobre</a>
         <a href="#servicos">Serviços</a>
-        <a href="#agendamento">Agendar</a>
+        <a href="#horarios">Horários</a>
         <a href="#contato">Contato</a>
       </div>
       <div class="footer-social">
@@ -1014,9 +334,10 @@ body {
         <div class="modal-price" id="modalPrice"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn-primary" id="modalAddBtn" style="width:100%; justify-content:center;">
-          Adicionar ao Carrinho
-        </button>
+        <a href="https://wa.me/5585998587467" target="_blank" class="btn-primary" id="modalWaBtn"
+           style="width:100%; justify-content:center; text-decoration:none;">
+          <i class="fa-brands fa-whatsapp"></i> Agendar pelo WhatsApp
+        </a>
       </div>
     </div>
   </div>
@@ -1024,186 +345,9 @@ body {
   <!-- ============ TOAST ============ -->
   <div class="toast" id="toast">
     <span id="toastIcon"><i class="fa-solid fa-circle-check"></i></span>
-    <span id="toastMsg">Serviço adicionado!</span>
+    <span id="toastMsg">Mensagem aqui</span>
   </div>
 
-  <script>
-// =============================================
-// CB PRIME AUTO — SCRIPT (identidade navy)
-// =============================================
-
-const servicos = {
-  motos: [
-    { id:1, cat:"urbano",  catLabel:"Uso Urbano",       catIcon:"fa-city",       nome:"Lavagem Completa", descCurta:"Para motos de uso urbano de 125cc e 150cc.", desc:"Lavagem completa e cuidadosa para motos de uso urbano como CG 125, CG 150, Biz, Pop e Fan.", preco:25, icon:'<i class="fa-solid fa-droplet"></i>', exemplos:"Ex: CG 125, CG 150, Biz, Pop, Fan" },
-    { id:2, cat:"naked",   catLabel:"Naked",             catIcon:"fa-gauge-high", nome:"Lavagem Completa", descCurta:"Para naked bikes de médio porte.",             desc:"Lavagem minuciosa para naked bikes como FZ-25 e MT-03.",                                          preco:30, icon:'<i class="fa-solid fa-droplet"></i>', exemplos:"Ex: FZ-25, MT-03, Z300, CB 300" },
-    { id:3, cat:"trail",   catLabel:"Trail / Adventure", catIcon:"fa-mountain",   nome:"Lavagem Completa", descCurta:"Para trail e adventure bikes.",                desc:"Lavagem completa para motos trail e adventure. Remoção eficiente de lama e poeira.",            preco:30, icon:'<i class="fa-solid fa-droplet"></i>', exemplos:"Ex: Lander, Tenere, XRE 300, Crosser" },
-    { id:4, cat:"scooter", catLabel:"Scooter",           catIcon:"fa-circle-dot", nome:"Lavagem Completa", descCurta:"Para scooters e maxi-scooters.",               desc:"Lavagem completa da scooter com atenção especial às carenagens e rodas.",                         preco:30, icon:'<i class="fa-solid fa-droplet"></i>', exemplos:"Ex: PCX, NMax, Lead, Burgman 125" }
-  ]
-};
-
-const horariosPorDia = {
-  "Segunda a Sexta": ["18:00","20:00"],
-  "Sábado":  ["07:00","09:00","11:00","13:00","15:00","17:00","19:00"],
-  "Domingo": ["07:00","09:00","11:00","13:00","15:00","17:00","19:00"]
-};
-
-let carrinho = [];
-let catAtiva = "urbano";
-
-function atualizarHorarios() {
-  const dia = document.getElementById("clienteData").value;
-  const sel = document.getElementById("clienteHora");
-  sel.innerHTML = "";
-  if (!dia) { sel.innerHTML = '<option value="">Selecione o dia primeiro</option>'; return; }
-  (horariosPorDia[dia] || []).forEach(h => {
-    const o = document.createElement("option"); o.value = h; o.textContent = h; sel.appendChild(o);
-  });
-}
-
-function renderServicos() { renderCatButtons(); renderGrid(catAtiva); }
-
-function renderCatButtons() {
-  const w = document.getElementById("tabs-motos"); if (!w) return;
-  const cats = [
-    {key:"urbano",label:"Uso Urbano",icon:"fa-city"},{key:"naked",label:"Naked",icon:"fa-gauge-high"},
-    {key:"trail",label:"Trail / Adventure",icon:"fa-mountain"},{key:"scooter",label:"Scooter",icon:"fa-circle-dot"}
-  ];
-  w.innerHTML = cats.map(c=>`<button class="tab-btn ${c.key===catAtiva?"active":""}" onclick="switchCat('${c.key}',this)"><span><i class="fa-solid ${c.icon}"></i></span>${c.label}</button>`).join("");
-}
-
-function renderGrid(cat) {
-  const g = document.getElementById("grid-motos"); if (!g) return;
-  g.innerHTML = "";
-  servicos.motos.filter(s=>s.cat===cat).forEach(s=>g.appendChild(criarCard(s)));
-}
-
-function switchCat(cat, btn) {
-  catAtiva = cat;
-  document.querySelectorAll("#tabs-motos .tab-btn").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  renderGrid(cat);
-}
-
-function criarCard(s) {
-  const card = document.createElement("div"); card.className = "service-card"; card.id = "card-"+s.id;
-  const nc = carrinho.some(i=>i.id===s.id);
-  card.innerHTML = `
-    <div class="service-icon-box">${s.icon}</div>
-    <span class="service-cat-badge"><i class="fa-solid ${s.catIcon}"></i> ${s.catLabel}</span>
-    <h3 class="service-name">${s.nome}</h3>
-    <p class="service-desc">${s.descCurta}</p>
-    <p class="service-exemplos">${s.exemplos}</p>
-    <div class="service-card-footer"><div class="service-price">R$ ${s.preco.toFixed(2).replace(".",",")}</div></div>
-    <div style="display:flex;gap:10px;margin-top:16px;">
-      <button class="btn-secondary" style="flex:1;padding:10px;font-size:11px;justify-content:center;" onclick="abrirModal(${s.id})">Veja Mais</button>
-      <button class="add-btn ${nc?"in-cart":""}" id="addbtn-${s.id}" style="flex:1;justify-content:center;" onclick="toggleServico(${s.id})">${nc?"✓ Adicionado":"+ Add"}</button>
-    </div>`;
-  return card;
-}
-
-function atualizarBotaoCard(id) {
-  const btn = document.getElementById("addbtn-"+id); if (!btn) return;
-  const nc = carrinho.some(i=>i.id===id);
-  btn.className = "add-btn "+(nc?"in-cart":"");
-  btn.textContent = nc?"✓ Adicionado":"+ Add";
-  btn.style.flex = "1"; btn.style.justifyContent = "center";
-}
-
-function toggleServico(id) {
-  const s = servicos.motos.find(s=>s.id===id);
-  const existe = carrinho.some(i=>i.id===id);
-  if (existe) { carrinho = carrinho.filter(i=>i.id!==id); mostrarToast("Serviço removido.","remove"); }
-  else { carrinho.push(s); mostrarToast("Serviço adicionado!","add"); }
-  atualizarCarrinho(); atualizarBotaoCard(id);
-}
-
-function atualizarCarrinho() {
-  const list=document.getElementById("cartList"), empty=document.getElementById("cartEmpty"),
-        footer=document.getElementById("cartFooter"), totalEl=document.getElementById("cartTotal"),
-        badge=document.getElementById("cartBadge");
-  list.innerHTML = "";
-  if (!carrinho.length) { empty.style.display="block"; footer.style.display="none"; badge.classList.remove("visible"); badge.textContent="0"; return; }
-  empty.style.display="none"; footer.style.display="block";
-  let total=0;
-  carrinho.forEach(item=>{
-    total+=item.preco;
-    const li=document.createElement("li"); li.className="cart-item";
-    li.innerHTML=`<span class="cart-item-icon">${item.icon}</span><div class="cart-item-info"><div class="cart-item-name">${item.nome}</div><div class="cart-item-cat">${item.catLabel}</div></div><div class="cart-item-price">R$ ${item.preco.toFixed(2).replace(".",",")}</div><button class="cart-remove-btn" onclick="toggleServico(${item.id})">✕</button>`;
-    list.appendChild(li);
-  });
-  totalEl.textContent="R$ "+total.toFixed(2).replace(".",",");
-  badge.textContent=carrinho.length; badge.classList.add("visible");
-}
-
-function finalizarPedido() {
-  const nome=document.getElementById("clienteNome").value.trim(),
-        tel=document.getElementById("clienteTel").value.trim(),
-        data=document.getElementById("clienteData").value,
-        hora=document.getElementById("clienteHora").value,
-        veiculo=document.getElementById("clienteVeiculo").value.trim(),
-        obs=document.getElementById("clienteObs").value.trim();
-  if (!nome||!tel||!data||!hora||!carrinho.length) { mostrarToast("Preencha tudo! Ou selecione um serviço!","warning"); return; }
-  let msg=`*Novo Agendamento - CB Prime Auto*%0A%0A👤 Nome: ${encodeURIComponent(nome)}%0A📱 Tel: ${encodeURIComponent(tel)}%0A🏍️ Veículo: ${encodeURIComponent(veiculo||"Não informado")}%0A📅 Dia: ${encodeURIComponent(data)} às ${encodeURIComponent(hora)}%0A%0A🛠️ *Serviços:*%0A`;
-  let tp=0;
-  carrinho.forEach(i=>{ msg+=`- ${encodeURIComponent(i.nome)} (${encodeURIComponent(i.catLabel)}) — R$ ${i.preco.toFixed(2).replace(".",",")}%0A`; tp+=i.preco; });
-  msg+=`%0A💰 *Total: R$ ${tp.toFixed(2).replace(".",",")}*%0A`;
-  if (obs) msg+=`%0A📝 Obs: ${encodeURIComponent(obs)}`;
-  window.open(`https://wa.me/5585998587467?text=${msg}`,"_blank");
-}
-
-const hamburger=document.getElementById("hamburger"), mobileMenu=document.getElementById("mobileMenu");
-hamburger.addEventListener("click",()=>{ hamburger.classList.toggle("open"); mobileMenu.classList.toggle("open"); });
-function closeMobileMenu() { hamburger.classList.remove("open"); mobileMenu.classList.remove("open"); }
-function scrollToSection(id) { document.getElementById(id).scrollIntoView({behavior:"smooth"}); }
-window.addEventListener("scroll",()=>{ document.getElementById("header").classList.toggle("scrolled",window.scrollY>50); });
-
-const observer=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("visible"); }); });
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-
-function mostrarToast(msg,type) {
-  const toast=document.getElementById("toast"), toastMsg=document.getElementById("toastMsg"), toastIcon=document.getElementById("toastIcon");
-  toastMsg.textContent=msg;
-  if(type==="add"){toastIcon.innerHTML='<i class="fa-solid fa-circle-check"></i>';toastIcon.style.color="#4ade80";}
-  else if(type==="remove"){toastIcon.innerHTML='<i class="fa-solid fa-circle-xmark"></i>';toastIcon.style.color="#f87171";}
-  else{toastIcon.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i>';toastIcon.style.color="#fbbf24";}
-  toast.classList.add("show"); setTimeout(()=>toast.classList.remove("show"),2500);
-}
-
-function abrirModal(id) {
-  const s=servicos.motos.find(s=>s.id===id); if(!s) return;
-  document.getElementById("modalIcon").innerHTML=s.icon;
-  document.getElementById("modalTitle").textContent=s.nome+" — "+s.catLabel;
-  document.getElementById("modalDesc").textContent=s.desc;
-  document.getElementById("modalPrice").textContent="R$ "+s.preco.toFixed(2).replace(".",",");
-  document.getElementById("modalAddBtn").onclick=()=>{toggleServico(s.id);fecharModal();};
-  document.getElementById("serviceModal").classList.add("active");
-}
-function fecharModal() { document.getElementById("serviceModal").classList.remove("active"); }
-document.getElementById("serviceModal").addEventListener("click",function(e){if(e.target===this)fecharModal();});
-
-// Partículas suaves (pontos brancos discretos)
-(function(){
-  const canvas=document.getElementById("particles-canvas");
-  const ctx=canvas.getContext("2d");
-  let W,H,pts=[];
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-  resize(); window.addEventListener("resize",resize);
-  for(let i=0;i<60;i++) pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.5,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,a:Math.random()*0.5+0.1});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(255,255,255,${p.a})`; ctx.fill();
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
-renderServicos();
-atualizarCarrinho();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
