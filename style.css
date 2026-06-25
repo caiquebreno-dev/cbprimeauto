@@ -50,7 +50,7 @@ body { background: var(--black); color: var(--white); font-family: var(--font-bo
 
 .section-tag {
   display: inline-block; font-size: 10px; font-weight: 200; letter-spacing: 4px;
-  text-transform: uppercase; color: var(--brand-light); border: 1px solid var(--white);
+  text-transform: uppercase; color: var(--white); border: 1px solid var(--brand-border);
   border-radius: 100px; padding: 5px 18px; margin-bottom: 14px; background: rgba(46,95,150,0.08);
 }
 
