@@ -55,7 +55,7 @@ const servicosCarros = [
     precoTexto: "R$ 60,00",
     preco: 60,
     icon: '<i class="fa-solid fa-truck-pickup"></i>',
-    exemplos: "Ex: Fiat Strada, Volkswagen Saveiro, Toyota Hilux"
+    exemplos: "Ex: S10, Toyota Hilux, Amarok, Fiat Toro"
   },
   {
     id: "c5",
@@ -65,10 +65,10 @@ const servicosCarros = [
     nome: "Lavagem Completa",
     descCurta: "Esportivos de duas portas.",
     desc: "Lavagem completa para cupês esportivos, com tratamento delicado nas saias, difusores e rodas de alto desempenho. Perfeito para quem valoriza detalhes e exige o melhor.",
-    precoTexto: "R$ 55,00",
-    preco: 55,
+    precoTexto: "R$ 60,00",
+    preco: 60,
     icon: '<i class="fa-solid fa-car-burst"></i>',
-    exemplos: "Ex: Chevrolet Camaro, Ford Mustang, BMW Série 4 Coupé"
+    exemplos: "Ex: Chevrolet Camaro, Ford Mustang, Audi TT"
   }
 ];
 
@@ -80,7 +80,7 @@ const servicosMotos = [
     catLabel: "Uso Urbano",
     catIcon: "fa-city",
     nome: "Lavagem Completa",
-    descCurta: "Para motos de uso urbano de 125cc e 150cc.",
+    descCurta: "Para motos de uso urbano de 125cc, 150cc e 160cc.",
     desc: "Lavagem completa e cuidadosa para motos de uso urbano como CG 125, CG 150, Biz, Pop e Fan. Processo detalhado para remover sujeira do dia a dia e proteger todos os componentes.",
     precoTexto: "R$ 25,00",
     preco: 25,
