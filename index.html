@@ -127,14 +127,43 @@
         <span class="section-tag">O Que Oferecemos</span>
         <h2 class="section-title">Nossos <span>Serviços</span></h2>
         <div class="gold-divider"></div>
-        <p class="section-desc">Escolha a categoria da sua moto</p>
+        <p class="section-desc">Todos os valores referentes à lavagem completa — escolha o seu veículo</p>
       </div>
-      <!-- TABS geradas pelo script.js -->
-      <div class="tabs-wrapper reveal" id="tabs-motos"></div>
-      <!-- GRID preenchido pelo script.js -->
-      <div class="tab-panel active" id="tab-motos">
+
+      <!-- SWITCHER PRINCIPAL: Carros / Motos -->
+      <div class="veiculo-switcher reveal" id="veiculo-switcher">
+        <button class="veiculo-btn active" id="btn-veiculo-carros" onclick="switchVeiculo('carros')">
+          <span><i class="fa-solid fa-car"></i></span>
+          Carros
+        </button>
+        <button class="veiculo-btn" id="btn-veiculo-motos" onclick="switchVeiculo('motos')">
+          <span><i class="fa-solid fa-motorcycle"></i></span>
+          Motos
+        </button>
+      </div>
+
+      <!-- ===== PAINEL CARROS ===== -->
+      <div class="veiculo-panel active" id="panel-carros">
+        <div class="panel-label reveal">
+          <i class="fa-solid fa-car"></i>
+          <span>Carros</span>
+        </div>
+        <!-- Subcategorias de carros geradas pelo script.js -->
+        <div class="tabs-wrapper" id="tabs-carros"></div>
+        <div class="services-grid" id="grid-carros"></div>
+      </div>
+
+      <!-- ===== PAINEL MOTOS ===== -->
+      <div class="veiculo-panel" id="panel-motos">
+        <div class="panel-label reveal">
+          <i class="fa-solid fa-motorcycle"></i>
+          <span>Motos</span>
+        </div>
+        <!-- Subcategorias de motos geradas pelo script.js -->
+        <div class="tabs-wrapper" id="tabs-motos"></div>
         <div class="services-grid" id="grid-motos"></div>
       </div>
+
     </div>
   </section>
 
