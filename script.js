@@ -75,56 +75,79 @@ const servicosCarros = [
 // ---------- DADOS DOS SERVIÇOS — MOTOS ----------
 const servicosMotos = [
   {
-    id: "m1",
-    cat: "urbano",
-    catLabel: "Uso Urbano",
-    catIcon: "fa-city",
-    nome: "Lavagem Completa",
-    descCurta: "Para motos de uso urbano de 125cc, 150cc e 160cc.",
-    desc: "Lavagem completa e cuidadosa para motos de uso urbano como CG 125, CG 150, Biz, Pop e Fan. Processo detalhado para remover sujeira do dia a dia e proteger todos os componentes.",
-    precoTexto: "R$ 25,00",
-    preco: 25,
-    icon: '<i class="fa-solid fa-droplet"></i>',
-    exemplos: "Ex: CG 125, CG 150, Biz, Pop, Fan"
+    id:"m1",cat:"urbano",catLabel:"Uso Urbano",catIcon:"fa-city",
+    nome:"Lavagem Completa",
+    descCurta:"Para motos de uso urbano de 125cc, 150cc e 160cc.",
+    desc:"Lavagem completa para motos de uso urbano.",
+    precoTexto:"R$ 25,00",preco:25,
+    icon:'<i class="fa-solid fa-droplet"></i>',
+    exemplos:"Ex: CG 125, CG 150, Biz, Pop, Fan"
   },
   {
-    id: "m2",
-    cat: "naked",
-    catLabel: "Naked",
-    catIcon: "fa-gauge-high",
-    nome: "Lavagem Completa",
-    descCurta: "Para naked bikes de médio porte.",
-    desc: "Lavagem minuciosa para naked bikes como FZ-25 e MT-03. Processo cuidadoso que respeita as peças expostas e garante brilho em toda a moto.",
-    precoTexto: "R$ 30,00",
-    preco: 30,
-    icon: '<i class="fa-solid fa-droplet"></i>',
-    exemplos: "Ex: FZ-25, MT-03, Z300, CB 300"
+    id:"m1d",cat:"urbano",catLabel:"Uso Urbano",catIcon:"fa-city",
+    nome:"Lavagem Detalhada",
+    descCurta:"Desmontagem parcial para limpeza profunda.",
+    desc:"Inclui remoção do banco, tampas laterais, tampa do pinhão e protetor da corrente para limpeza completa das áreas ocultas, finalizando com acabamento premium.",
+    precoTexto:"R$ 50,00",preco:50,
+    icon:'<i class="fa-solid fa-screwdriver-wrench"></i>',
+    exemplos:"Ex: CG 125, CG 150, Biz, Pop, Fan"
   },
   {
-    id: "m3",
-    cat: "trail",
-    catLabel: "Trail / Adventure",
-    catIcon: "fa-mountain",
-    nome: "Lavagem Completa",
-    descCurta: "Para trail e adventure bikes.",
-    desc: "Lavagem completa para motos trail e adventure. Remoção eficiente de lama, poeira e sujeira de uso misto, protegendo todos os componentes.",
-    precoTexto: "R$ 30,00",
-    preco: 30,
-    icon: '<i class="fa-solid fa-droplet"></i>',
-    exemplos: "Ex: Lander, Tenere, XRE 300, Crosser"
+    id:"m2",cat:"naked",catLabel:"Naked",catIcon:"fa-gauge-high",
+    nome:"Lavagem Completa",descCurta:"Para naked bikes de médio porte.",
+    desc:"Lavagem completa para naked bikes.",
+    precoTexto:"R$ 30,00",preco:30,
+    icon:'<i class="fa-solid fa-droplet"></i>',
+    exemplos:"Ex: FZ-25, MT-03, Z300, CB 300"
   },
   {
-    id: "m4",
-    cat: "scooter",
-    catLabel: "Scooter",
-    catIcon: "fa-circle-dot",
-    nome: "Lavagem Completa",
-    descCurta: "Para scooters e maxi-scooters.",
-    desc: "Lavagem completa da scooter com atenção especial às carenagens, rodas e compartimento interno de bagagem.",
-    precoTexto: "R$ 30,00",
-    preco: 30,
-    icon: '<i class="fa-solid fa-droplet"></i>',
-    exemplos: "Ex: PCX, NMax, Lead, Burgman 125"
+    id:"m2d",cat:"naked",catLabel:"Naked",catIcon:"fa-gauge-high",
+    nome:"Lavagem Detalhada",descCurta:"Desmontagem parcial para limpeza profunda.",
+    desc:"Inclui remoção do banco, tampas laterais, tampa do pinhão e protetor da corrente para limpeza completa das áreas ocultas, finalizando com acabamento premium.",
+    precoTexto:"R$ 60,00",preco:60,
+    icon:'<i class="fa-solid fa-screwdriver-wrench"></i>',
+    exemplos:"Ex: FZ-25, MT-03, Z300, CB 300"
+  },
+  {
+    id:"m3",cat:"trail",catLabel:"Trail / Adventure",catIcon:"fa-mountain",
+    nome:"Lavagem Completa",descCurta:"Para trail e adventure bikes.",
+    desc:"Lavagem completa para motos trail e adventure.",
+    precoTexto:"R$ 30,00",preco:30,
+    icon:'<i class="fa-solid fa-droplet"></i>',
+    exemplos:"Ex: Lander, Tenere, XRE 300, Crosser"
+  },
+  {
+    id:"m3d",cat:"trail",catLabel:"Trail / Adventure",catIcon:"fa-mountain",
+    nome:"Lavagem Detalhada",descCurta:"Desmontagem parcial para limpeza profunda.",
+    desc:"Inclui remoção do banco, tampas laterais, tampa do pinhão e protetor da corrente para limpeza completa das áreas ocultas, finalizando com acabamento premium.",
+    precoTexto:"R$ 60,00",preco:60,
+    icon:'<i class="fa-solid fa-screwdriver-wrench"></i>',
+    exemplos:"Ex: Lander, Tenere, XRE 300, Crosser"
+  },
+  {
+    id:"m4",cat:"scooter",catLabel:"Scooter",catIcon:"fa-circle-dot",
+    nome:"Lavagem Completa",descCurta:"Para scooters e maxi-scooters.",
+    desc:"Lavagem completa para scooters.",
+    precoTexto:"R$ 30,00",preco:30,
+    icon:'<i class="fa-solid fa-droplet"></i>',
+    exemplos:"Ex: PCX, NMax, Lead, Burgman 125"
+  },
+  {
+    id:"m4d",cat:"scooter",catLabel:"Scooter",catIcon:"fa-circle-dot",
+    nome:"Lavagem Detalhada",descCurta:"Desmontagem parcial para limpeza profunda.",
+    desc:"Inclui remoção do banco, tampas laterais, tampa do pinhão e protetor da corrente para limpeza completa das áreas ocultas, finalizando com acabamento premium.",
+    precoTexto:"R$ 60,00",preco:60,
+    icon:'<i class="fa-solid fa-screwdriver-wrench"></i>',
+    exemplos:"Ex: PCX, NMax, Lead, Burgman 125"
+  },
+  {
+    id:"mad",cat:"urbano",catLabel:"Adicionais",catIcon:"fa-plus",
+    nome:"Adicionais",
+    descCurta:"Serviços complementares.",
+    desc:"Verniz de motor: R$15 | Clareamento de motor + verniz: R$30 | Clareamento do bacalhau + verniz: R$20",
+    precoTexto:"A partir de R$ 15,00",preco:15,
+    icon:'<i class="fa-solid fa-spray-can-sparkles"></i>',
+    exemplos:""
   }
 ];
 
